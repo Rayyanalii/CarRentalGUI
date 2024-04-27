@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="493.0" prefWidth="731.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.carrentalgui.MenuPageController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="494.0" stroke="BLACK" strokeType="INSIDE" width="731.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.7546296119689941" green="0.9182098507881165" blue="1.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+      <Label layoutX="146.0" layoutY="44.0" text="Welcome To Car Rental System">
+         <font>
+            <Font name="System Bold" size="31.0" />
+         </font>
+      </Label>
+      <Label layoutX="243.0" layoutY="188.0" text="Choose a Panel To Begin">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="UserPanelButton" layoutX="155.0" layoutY="251.0" mnemonicParsing="false" onMouseClicked="#handleUserPanel" prefHeight="94.0" prefWidth="132.0" text="User Panel">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Label layoutX="183.0" layoutY="99.0" text="Your one-stop solution to your Car Rental Problems">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Button fx:id="AdminPanelButton" layoutX="427.0" layoutY="251.0" mnemonicParsing="false" onMouseClicked="#handleAdminPanel" prefHeight="94.0" prefWidth="132.0" text="Admin Panel">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

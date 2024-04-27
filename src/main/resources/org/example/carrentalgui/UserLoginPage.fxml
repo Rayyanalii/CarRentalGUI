@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="495.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.carrentalgui.UserLoginPageController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="507.0" stroke="BLACK" strokeType="INSIDE" width="744.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.7546296119689941" green="0.9182098507881165" blue="1.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+      <Label layoutX="284.0" layoutY="60.0" text="User Login">
+         <font>
+            <Font name="System Bold" size="35.0" />
+         </font>
+      </Label>
+      <Label layoutX="167.0" layoutY="205.0" text="Username:">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="171.0" layoutY="255.0" text="Password:">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="GoBackButton" layoutX="27.0" layoutY="33.0" mnemonicParsing="false" onAction="#handleBackButton" text="Go Back" />
+      <TextField fx:id="usernameField" layoutX="280.0" layoutY="206.0" onAction="#handleUsernameField" prefHeight="25.0" prefWidth="223.0" />
+      <PasswordField fx:id="passwordField" layoutX="280.0" layoutY="256.0" onAction="#handlePasswordField" prefHeight="25.0" prefWidth="223.0" />
+      <Label layoutX="289.0" layoutY="149.0" text="Enter your details">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="164.0" layoutY="387.0" prefHeight="25.0" prefWidth="101.0" text="Not a member?">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="RegisterButton" layoutX="280.0" layoutY="387.0" mnemonicParsing="false" onAction="#handleRegisterButton" prefHeight="25.0" prefWidth="101.0" text="Register Now!" />
+      <Button fx:id="LoginButton" layoutX="169.0" layoutY="310.0" mnemonicParsing="false" onAction="#handleLoginButton" prefHeight="39.0" prefWidth="339.0" text="Login" />
+   </children>
+</AnchorPane>
