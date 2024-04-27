@@ -11,7 +11,7 @@ public class Driver extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Driver.class.getResource("MenuPage.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(),700,400);
+        Scene scene = new Scene(fxmlLoader.load(),720,480);
         stage.setTitle("Menu Page");
         stage.setResizable(false);
         stage.setScene(scene);
