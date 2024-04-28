@@ -159,9 +159,28 @@ public class ReserveACar {
 
     @FXML
     void handleRentbutton(ActionEvent event) throws IOException {
-        Alert a=new Alert(Alert.AlertType.CONFIRMATION);
-        a.setContentText("Car has been reserved successfully!");
-        a.showAndWait();
+
+        Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText("Enter number of days you want to rent for:");
+        TextField textField = new TextField();
+        alert.getDialogPane().setContent(textField);
+        ButtonType buttonTypeOk = new ButtonType("OK");
+        ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonType.CLOSE.getButtonData());
+        alert.getButtonTypes().setAll(buttonTypeOk, buttonTypeCancel);
+        Optional<ButtonType> result = alert.showAndWait();
+        result.ifPresent(response -> {
+            if (response == buttonTypeOk) {
+                // Retrieve the input from the text field
+                String input = textField.getText();
+                Alert a=new Alert(Alert.AlertType.CONFIRMATION);
+                a.setContentText("Car has been rented successfully!");
+                a.showAndWait();
+                Code.RentACar(rowData,username,input);
+                // Continue your code here with the input
+            } else {
+                // Handle cancel or do nothing
+            }
+        });
         Stage stage = (Stage) RentCar.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("ReserveACar.fxml"));
         Parent root = loader.load();

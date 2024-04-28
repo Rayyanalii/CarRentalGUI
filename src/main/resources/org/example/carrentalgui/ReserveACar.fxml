@@ -55,12 +55,12 @@
             </content>
         </ScrollPane>
         <Button fx:id="GoBackButton" layoutX="56.0" layoutY="36.0" mnemonicParsing="false" onAction="#handleBackButton" text="Go Back" />
-        <Label layoutX="280.0" layoutY="23.0" text="Rent A Car">
+        <Label layoutX="280.0" layoutY="23.0" text="Reserve A Car">
             <font>
                 <Font name="System Bold" size="35.0" />
             </font>
         </Label>
-        <Button fx:id="RentCar" layoutX="598.0" layoutY="97.0" mnemonicParsing="false" onAction="#handleRentbutton" prefHeight="30.0" prefWidth="89.0" text="Rent Car" />
+        <Button fx:id="RentCar" layoutX="598.0" layoutY="97.0" mnemonicParsing="false" onAction="#handleRentbutton" prefHeight="30.0" prefWidth="89.0" text="Reserve Car" />
         <TextField fx:id="SearchField" layoutX="121.0" layoutY="102.0" onAction="#handleSearchField" prefHeight="25.0" prefWidth="303.0" />
         <Label layoutX="36.0" layoutY="98.0" text="Search:">
             <font>
