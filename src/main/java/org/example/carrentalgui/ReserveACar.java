@@ -170,15 +170,12 @@ public class ReserveACar {
         Optional<ButtonType> result = alert.showAndWait();
         result.ifPresent(response -> {
             if (response == buttonTypeOk) {
-                // Retrieve the input from the text field
                 String input = textField.getText();
                 Alert a=new Alert(Alert.AlertType.CONFIRMATION);
-                a.setContentText("Car has been rented successfully!");
+                a.setContentText("Car has been reserved successfully!");
                 a.showAndWait();
-                Code.RentACar(rowData,username,input);
-                // Continue your code here with the input
+                Code.BookingReservation(rowData,username,input);
             } else {
-                // Handle cancel or do nothing
             }
         });
         Stage stage = (Stage) RentCar.getScene().getWindow();

@@ -11,7 +11,6 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="464.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.carrentalgui.RegisterPage">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="517.0" stroke="BLACK" strokeType="INSIDE" width="754.0">
@@ -48,8 +47,8 @@
          </font>
       </Label>
       <Button fx:id="GoBackButton" layoutX="37.0" layoutY="43.0" mnemonicParsing="false" onAction="#handleBackButton" text="Go Back" />
-      <TextField fx:id="usernameField" layoutX="290.0" layoutY="206.0" onAction="#handleUsernameField" onMouseClicked="#handleUsernameFieldClick" prefHeight="25.0" prefWidth="223.0" />
-      <PasswordField fx:id="passwordField" layoutX="290.0" layoutY="253.0" onAction="#handlePasswordField" onMouseClicked="#handlePasswordFieldClick" prefHeight="25.0" prefWidth="223.0" />
+      <TextField fx:id="usernameField" layoutX="290.0" layoutY="206.0" onAction="#handleUsernameField" onKeyReleased="#handleUsernameFieldKeyReleased" onMouseClicked="#handleUsernameFieldClick" prefHeight="25.0" prefWidth="223.0" />
+      <PasswordField fx:id="passwordField" layoutX="290.0" layoutY="253.0" onAction="#handlePasswordField" onKeyReleased="#handlePasswordFieldKeyReleased" onMouseClicked="#handlePasswordFieldClick" prefHeight="25.0" prefWidth="223.0" />
       <Label layoutX="299.0" layoutY="154.0" text="Enter your details">
          <font>
             <Font name="System Bold" size="20.0" />

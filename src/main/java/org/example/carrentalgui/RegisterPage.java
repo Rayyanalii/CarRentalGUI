@@ -6,14 +6,22 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 
 public class RegisterPage {
     @FXML
     private void initialize(){
+        req2.setTextFill(Paint.valueOf("red"));
+        req1.setTextFill(Paint.valueOf("red"));
+        req.setTextFill(Paint.valueOf("red"));
         req.setVisible(false);
         req1.setVisible(false);
         req2.setVisible(false);
@@ -56,6 +64,40 @@ public class RegisterPage {
         stage.setTitle("Login Page");
         stage.show();
         ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+    }
+    @FXML
+    void handleUsernameFieldKeyReleased(KeyEvent event) {
+        String username=usernameField.getText();
+        int flag=0;
+        try {
+            File f=new File(Code.users);
+            if(!f.exists()||username.equalsIgnoreCase("")){
+                req2.setTextFill(Paint.valueOf("red"));
+            }
+            else {
+                BufferedReader br=new BufferedReader(new FileReader(f));
+                String buffer;
+                while((buffer=br.readLine())!=null){
+                    String data[]=buffer.split(" ");
+                    if(username.equals(data[0])){
+                        flag=1;
+                        req2.setTextFill(Paint.valueOf("red"));
+                    }
+                }
+                if(flag==0){
+                    req2.setTextFill(Paint.valueOf("green"));
+                }
+            }
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void handlePasswordFieldKeyReleased(KeyEvent event) {
+        String password=passwordField.getText();
+
     }
 
     @FXML

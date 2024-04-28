@@ -22,7 +22,7 @@ public class AdminPanel {
         Stage stage = new Stage();
         stage.setScene(new Scene(root,720,480));
         stage.setResizable(false);
-        stage.setTitle("User Menu");
+        stage.setTitle("View All Cars");
         stage.show();
         ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
     }
@@ -34,7 +34,7 @@ public class AdminPanel {
         Stage stage = new Stage();
         stage.setScene(new Scene(root,720,480));
         stage.setResizable(false);
-        stage.setTitle("User Menu");
+        stage.setTitle("Add A Car");
         stage.show();
         ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
     }
@@ -46,7 +46,7 @@ public class AdminPanel {
         Stage stage = new Stage();
         stage.setScene(new Scene(root,720,480));
         stage.setResizable(false);
-        stage.setTitle("User Menu");
+        stage.setTitle("Delete A Car");
         stage.show();
         ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
     }
@@ -58,7 +58,7 @@ public class AdminPanel {
         Stage stage = new Stage();
         stage.setScene(new Scene(root,720,480));
         stage.setResizable(false);
-        stage.setTitle("User Menu");
+        stage.setTitle("Display All Users");
         stage.show();
         ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
     }
@@ -70,7 +70,7 @@ public class AdminPanel {
         Stage stage = new Stage();
         stage.setScene(new Scene(root,720,480));
         stage.setResizable(false);
-        stage.setTitle("User Menu");
+        stage.setTitle("Main Menu");
         stage.show();
         ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
     }
@@ -82,7 +82,7 @@ public class AdminPanel {
         Stage stage = new Stage();
         stage.setScene(new Scene(root,720,480));
         stage.setResizable(false);
-        stage.setTitle("User Menu");
+        stage.setTitle("Manage Reservations");
         stage.show();
         ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
     }

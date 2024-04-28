@@ -649,38 +649,46 @@ public class Code {
             e.printStackTrace();
         }
     }
-    public static void BookingReservation(String name){
-        System.out.println("-------------------------------------------------------------------------");
-        System.out.print("Enter make of car:");
-        String make=scanner.nextLine();
-        System.out.print("Enter model of car:");
-        String model=scanner.nextLine();
-        System.out.print("Enter year of car:");
-        String year=scanner.nextLine();
-        System.out.print("Enter rent per day of car:");
-        String rent=scanner.nextLine();
-        System.out.print("Enter how many days you want to rent for:");
-        String days=scanner.nextLine();
-        QueueList node=new QueueList(make,model,year,name,rent,days);
-        if(Enqueue==Dequeue){
-            Enqueue=node;
-            Dequeue=node;
-        }
-        else{
-            Dequeue.next=node;
-            Dequeue=node;
-        }
+    public static void BookingReservation(String[] data,String name,String days){
+        int intdays=Integer.parseInt(days);
+        int intrent= Integer.parseInt(data[3]);
+        int total=intdays*intrent;
+        String stringtotal= String.valueOf(total);
         try{
+            File avail=new File(available);
+            File tem=new File(temp);
             File f=new File(reservations);
             if(!f.exists()){
                 f.createNewFile();
             }
+            String b;
+            String car="%s %s %s %s".formatted(data[0],data[1],data[2],data[3]);
+            BufferedReader availreader=new BufferedReader(new FileReader(avail));
+            BufferedWriter tempwriter=new BufferedWriter(new FileWriter(tem));
+            while((b=availreader.readLine())!=null){
+                if(b.equalsIgnoreCase(car)){
+                }
+                else {
+                    tempwriter.write(b);
+                    tempwriter.newLine();
+                }
+            }
+            availreader.close();
+            tempwriter.close();
+            BufferedWriter availwriter=new BufferedWriter(new FileWriter(avail));
+            BufferedReader tempreader=new BufferedReader(new FileReader(tem));
+            while((b=tempreader.readLine())!=null){
+                    availwriter.write(b);
+                    availwriter.newLine();
+            }
+            tempreader.close();
+            availwriter.close();
+            tem.delete();
             BufferedWriter bw=new BufferedWriter(new FileWriter(f,true));
-            String buffer="%s %s %s %s %s %s".formatted(name,make,model,year,rent,days);
+            String buffer="%s %s %s %s %s %s %s".formatted(name,data[0],data[1],data[2],data[3],days,stringtotal);
             bw.write(buffer);
             bw.newLine();
             bw.close();
-            System.out.println("Reservation has been made successfully!");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
