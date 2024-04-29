@@ -25,7 +25,7 @@ public class MenuPageController {
         Stage stage = new Stage();
         stage.setScene(new Scene(root,720,480));
         stage.setResizable(false);
-        stage.setTitle("User Menu");
+        stage.setTitle("Admin Menu");
         stage.show();
         ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
     }

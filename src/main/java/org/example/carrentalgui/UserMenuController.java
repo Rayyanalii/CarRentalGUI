@@ -28,7 +28,7 @@ public class UserMenuController {
         Stage stage = new Stage();
         stage.setScene(new Scene(root,720,480));
         stage.setResizable(false);
-        stage.setTitle("Menu Page");
+        stage.setTitle("Main Menu");
         stage.show();
         ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
     }
@@ -40,7 +40,7 @@ public class UserMenuController {
         Stage stage = new Stage();
         stage.setScene(new Scene(root,720,480));
         stage.setResizable(false);
-        stage.setTitle("Login Page");
+        stage.setTitle("User Login");
         stage.show();
         ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
     }
@@ -52,7 +52,7 @@ public class UserMenuController {
         Stage stage = new Stage();
         stage.setScene(new Scene(root,720,480));
         stage.setResizable(false);
-        stage.setTitle("Login Page");
+        stage.setTitle("User Register");
         stage.show();
         ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
     }
