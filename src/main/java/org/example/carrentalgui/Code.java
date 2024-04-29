@@ -44,10 +44,10 @@ public class Code {
             super(error);
         }
     }
-    public static String available="C:\\Users\\rayya\\Desktop\\AvailCars.txt";
-    public static String users="C:\\Users\\rayya\\Desktop\\Users.txt";
-    public static String temp="C:\\Users\\rayya\\Desktop\\temp.txt";
-    public static String reservations="C:\\Users\\rayya\\Desktop\\Reservations.txt";
+    public static String available="C:\\Users\\Dell\\Desktop\\AvailCars.txt";
+    public static String users="C:\\Users\\Dell\\Desktop\\Users.txt";
+    public static String temp="C:\\Users\\Dell\\Desktop\\temp.txt";
+    public static String reservations="C:\\Users\\Dell\\Desktop\\Reservations.txt";
     static Scanner scanner = new Scanner(System.in);
     static int LocketOutCount=0;
     public static int Menu(){
@@ -176,7 +176,7 @@ public class Code {
         int rent= Integer.parseInt(data[3]);
                 int Total = rent*days;
                     try {
-                        String filename = "C:\\Users\\rayya\\Desktop\\%s RentedCars.txt".formatted(name);
+                        String filename = "C:\\Users\\Dell\\Desktop\\%s RentedCars.txt".formatted(name);
                         File f1 = new File(temp);
                         File f2 = new File(available);
                         File f3 = new File(filename);
@@ -219,7 +219,7 @@ public class Code {
                     }
     }
     public static void ReturnACar(String data[],String name){
-        String filename="C:\\Users\\rayya\\Desktop\\%s RentedCars.txt".formatted(name);
+        String filename="C:\\Users\\Dell\\Desktop\\%s RentedCars.txt".formatted(name);
         String buffer = "%s %s %s %s %s %s".formatted(data[0],data[1],data[2],data[3],data[4],data[5]);
         String buffer2;
                 try {
@@ -360,7 +360,7 @@ public class Code {
                     }
                     br1.close();
                     for (String username : usernames) {
-                        String filename = "C:\\Users\\rayya\\Desktop\\%s RentedCars.txt".formatted(username);
+                        String filename = "C:\\Users\\Dell\\Desktop\\%s RentedCars.txt".formatted(username);
                         File f2 = new File(filename);
                         if (!f2.exists()) {
                             continue;
@@ -739,7 +739,7 @@ public class Code {
                     while (current != null) {
                         if ((current.make.equalsIgnoreCase(make) && current.model.equalsIgnoreCase(model)) && (current.year.equalsIgnoreCase(year) && current.rent.equalsIgnoreCase(rent))) {
                             check=1;
-                            String filename = "C:\\Users\\rayya\\Desktop\\%s RentedCars.txt".formatted(current.username);
+                            String filename = "C:\\Users\\Dell\\Desktop\\%s RentedCars.txt".formatted(current.username);
                             File f = new File(filename);
                             if (!f.exists()) {
                                 f.createNewFile();

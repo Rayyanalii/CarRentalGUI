@@ -121,7 +121,7 @@ public class DeleteCar {
     }
 
     private void loadDataFromFile() {
-        String filePath = "C:\\Users\\rayya\\Desktop\\AvailCars.txt";
+        String filePath = "C:\\Users\\Dell\\Desktop\\AvailCars.txt";
         String line;
 
         try {
