@@ -137,7 +137,7 @@ public class ManageReservations {
     }
 
     private void loadDataFromFile() {
-        String filePath = "C:\\Users\\rayya\\Desktop\\Reservations.txt";
+        String filePath = "C:\\Users\\Dell\\Desktop\\Reservations.txt";
         String line;
         try {
             File f = new File(filePath);
@@ -188,7 +188,7 @@ public class ManageReservations {
         try{
             File reservation=new File(Code.reservations);
             File tem=new File(Code.temp);
-            String user="C:\\Users\\rayya\\Desktop\\%s RentedCars.txt".formatted(rowData[0]);
+            String user="C:\\Users\\Dell\\Desktop\\%s RentedCars.txt".formatted(rowData[0]);
             File userFile=new File(user);
             BufferedWriter userWriter=new BufferedWriter(new FileWriter(userFile,true));
             String buffer="%s %s %s %s %s %s".formatted(rowData[1],rowData[2],rowData[3],rowData[4],rowData[5],rowData[6]);
