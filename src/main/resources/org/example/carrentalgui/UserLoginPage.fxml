@@ -11,7 +11,6 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="495.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.carrentalgui.UserLoginPageController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="507.0" stroke="BLACK" strokeType="INSIDE" width="744.0">
@@ -47,7 +46,6 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Button fx:id="GoBackButton" layoutX="27.0" layoutY="33.0" mnemonicParsing="false" onAction="#handleBackButton" text="Go Back" />
       <TextField fx:id="usernameField" layoutX="280.0" layoutY="206.0" onAction="#handleUsernameField" prefHeight="25.0" prefWidth="223.0" />
       <PasswordField fx:id="passwordField" layoutX="280.0" layoutY="256.0" onAction="#handlePasswordField" prefHeight="25.0" prefWidth="223.0" />
       <Label layoutX="289.0" layoutY="149.0" text="Enter your details">
@@ -60,7 +58,8 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Button fx:id="RegisterButton" layoutX="280.0" layoutY="387.0" mnemonicParsing="false" onAction="#handleRegisterButton" prefHeight="25.0" prefWidth="101.0" text="Register Now!" />
       <Button fx:id="LoginButton" layoutX="169.0" layoutY="310.0" mnemonicParsing="false" onAction="#handleLoginButton" prefHeight="39.0" prefWidth="339.0" text="Login" />
+      <Button fx:id="RegisterButton" layoutX="280.0" layoutY="387.0" mnemonicParsing="false" onAction="#handleRegisterButton" prefHeight="25.0" prefWidth="101.0" text="Register Now!" />
+      <Button fx:id="GoBackButton" layoutX="27.0" layoutY="33.0" mnemonicParsing="false" onAction="#handleBackButton" text="Go Back" />
    </children>
 </AnchorPane>

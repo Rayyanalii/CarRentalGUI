@@ -64,6 +64,7 @@ public class UserPanel {
 
     @FXML
     void handleReserveButton(ActionEvent event) throws IOException {
+        ReserveACar.setUsername(username);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("ReserveACar.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();

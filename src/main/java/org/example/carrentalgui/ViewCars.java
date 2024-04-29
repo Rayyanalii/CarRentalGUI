@@ -29,11 +29,12 @@ public class ViewCars {
     private TableView<String[]> tableView;
     private FilteredList<String[]> filteredData;
 
-    public void initialize() {
-        TableColumn<String[], String> column1 = new TableColumn<>("Make");
-        TableColumn<String[], String> column2 = new TableColumn<>("Model");
-        TableColumn<String[], String> column3 = new TableColumn<>("Year");
-        TableColumn<String[], String> column4 = new TableColumn<>("Rent Per Day");
+    public void initialize() throws IOException {
+        TableColumn<String[], String> column1 = new TableColumn<>("User");
+        TableColumn<String[], String> column2 = new TableColumn<>("Make");
+        TableColumn<String[], String> column3 = new TableColumn<>("Model");
+        TableColumn<String[], String> column4 = new TableColumn<>("Year");
+        TableColumn<String[], String> column5 = new TableColumn<>("Rent Per Day");
 
         column1.setCellValueFactory(data -> {
             String[] rowData = data.getValue();
@@ -53,8 +54,12 @@ public class ViewCars {
             String[] rowData = data.getValue();
             return rowData != null && rowData.length > 3 ? new SimpleStringProperty(rowData[3]) : new SimpleStringProperty("");
         });
+        column5.setCellValueFactory(data -> {
+            String[] rowData = data.getValue();
+            return rowData != null && rowData.length > 4 ? new SimpleStringProperty(rowData[4]) : new SimpleStringProperty("");
+        });
 
-        tableView.getColumns().addAll(column1, column2, column3, column4);
+        tableView.getColumns().addAll(column1, column2, column3, column4, column5);
 
         loadDataFromFile();
 
@@ -104,10 +109,9 @@ public class ViewCars {
         });
     }
 
-    private void loadDataFromFile() {
-        String filePath = "C:\\Users\\Dell\\Desktop\\AvailCars.txt";
+    private void loadDataFromFile() throws IOException {
+        String filePath = "C:\\Users\\rayya\\Desktop\\AvailCars.txt";
         String line;
-
         try {
             File f = new File(filePath);
             if (!f.exists()) {
@@ -116,11 +120,38 @@ public class ViewCars {
                 BufferedReader br = new BufferedReader(new FileReader(f));
                 while ((line = br.readLine()) != null) {
                     String[] data = line.split(" ");
-                    tableView.getItems().add(data);
+                    String[] finalcar={"System",data[0],data[1],data[2],data[3]};
+                    tableView.getItems().add(finalcar);
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        ArrayList<String> usernames=new ArrayList<>();
+        File f1 = new File(Code.users);
+        if (!f1.exists()) {
+        } else {
+            BufferedReader br1 = new BufferedReader(new FileReader(f1));
+            String buffer;
+            while ((buffer = br1.readLine()) != null) {
+                String[] arr = buffer.split(" ");
+                usernames.add(arr[0]);
+            }
+            br1.close();
+            for (String username : usernames) {
+                String filename = "C:\\Users\\rayya\\Desktop\\%s RentedCars.txt".formatted(username);
+                File f2 = new File(filename);
+                if (!f2.exists()) {
+                    continue;
+                }
+                BufferedReader br2 = new BufferedReader(new FileReader(f2));
+                while((buffer = br2.readLine()) != null){
+                    String data[]=buffer.split(" ");
+                    String car[]={username,data[0],data[1],data[2],data[3]};
+                    tableView.getItems().add(car);
+                }
+                br2.close();
+            }
         }
     }
 

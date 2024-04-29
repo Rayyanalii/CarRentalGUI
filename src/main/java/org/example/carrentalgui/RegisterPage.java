@@ -6,17 +6,25 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 
 public class RegisterPage {
     @FXML
     private void initialize(){
+        req2.setTextFill(Paint.valueOf("red"));
+        req1.setTextFill(Paint.valueOf("red"));
+        req.setTextFill(Paint.valueOf("red"));
         req.setVisible(false);
         req1.setVisible(false);
-        req2.setVisible(false);
+        req2.setVisible(true);
     }
 
     @FXML
@@ -53,9 +61,93 @@ public class RegisterPage {
         Stage stage = new Stage();
         stage.setScene(new Scene(root,720,480));
         stage.setResizable(false);
-        stage.setTitle("Login Page");
+        stage.setTitle("Main Menu");
         stage.show();
         ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+    }
+    @FXML
+    void handleUsernameFieldKeyReleased(KeyEvent event) {
+        req2.setText("Username must be unique");
+        String username=usernameField.getText();
+        if(usernameField.getText().contains(" ")){
+            req2.setText("Space is not allowed!");
+            req2.setTextFill(Paint.valueOf("red"));
+            req2.setVisible(true);
+            return;
+        }
+        int flag=0;
+        try {
+            File f=new File(Code.users);
+            if(!f.exists()||username.equalsIgnoreCase("")){
+                req2.setTextFill(Paint.valueOf("red"));
+            }
+            else {
+                BufferedReader br=new BufferedReader(new FileReader(f));
+                String buffer;
+                while((buffer=br.readLine())!=null){
+                    String data[]=buffer.split(" ");
+                    if(username.equals(data[0])){
+                        flag=1;
+                        req2.setTextFill(Paint.valueOf("red"));
+                    }
+                }
+                if(flag==0){
+                    req2.setTextFill(Paint.valueOf("green"));
+                }
+            }
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void handlePasswordFieldKeyReleased(KeyEvent event) {
+        req.setText("Must have 3 digits and 1 special character");
+        if(passwordField.getText().contains(" ")){
+            req.setText("Space is not allowed!");
+            req.setTextFill(Paint.valueOf("red"));
+            req.setVisible(true);
+            return;
+        }
+        String password=passwordField.getText();
+        int num=0;
+        int special=0;
+        if(password.length()>3){
+            for (int i = 0; i < password.length(); i++) {
+                char c= password.charAt(i);
+                if(Character.isDigit(c)){
+                    num++;
+                }
+                else if(!Character.isDigit(c) && !Character.isLetter(c) && !Character.isWhitespace(c)){
+                    special++;
+                }
+            }
+            if(num>=3&&special>=1){
+                req.setTextFill(Paint.valueOf("green"));
+            }
+            else {
+                req.setTextFill(Paint.valueOf("red"));
+            }
+        }
+        else {
+            req.setTextFill(Paint.valueOf("red"));
+        }
+    }
+    @FXML
+    void handleReenterReleased(KeyEvent event) {
+        String password1=passwordField.getText();
+        String password2=passwordField1.getText();
+        if(password2.equalsIgnoreCase("")){
+            req1.setTextFill(Paint.valueOf("red"));
+            return;
+        }
+        if(password1.equals(password2)){
+            req1.setTextFill(Paint.valueOf("green"));
+        }
+        else {
+            req1.setTextFill(Paint.valueOf("red"));
+        }
     }
 
     @FXML
@@ -65,7 +157,7 @@ public class RegisterPage {
         Stage stage = new Stage();
         stage.setScene(new Scene(root,720,480));
         stage.setResizable(false);
-        stage.setTitle("Login Page");
+        stage.setTitle("User Login");
         stage.show();
         ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
     }
@@ -99,6 +191,18 @@ public class RegisterPage {
         req.setVisible(false);
         req1.setVisible(true);
         req2.setVisible(false);
+        String password1=passwordField.getText();
+        String password2=passwordField1.getText();
+        if(password2.equalsIgnoreCase("")){
+            req1.setTextFill(Paint.valueOf("red"));
+            return;
+        }
+        if(password1.equals(password2)){
+            req1.setTextFill(Paint.valueOf("green"));
+        }
+        else {
+            req1.setTextFill(Paint.valueOf("red"));
+        }
     }
 
     @FXML
@@ -118,7 +222,22 @@ public class RegisterPage {
             String username = usernameField.getText();
             String password = passwordField.getText();
             String password1 = passwordField1.getText();
-            if (Code.UserRegistration(username, password, password1).equals("exist")) {
+            if(usernameField.getText().contains(" ")){
+                Alert alert=new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Username Field has space. Try Again");
+                alert.showAndWait();
+            }
+            else if(passwordField.getText().contains(" ")){
+                Alert alert=new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Password Field has space. Try Again");
+                alert.showAndWait();
+            }
+            else if(passwordField1.getText().contains(" ")){
+                Alert alert=new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Re-Enter Password Field has space. Try Again");
+                alert.showAndWait();
+            }
+            else if (Code.UserRegistration(username, password, password1).equals("exist")) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText("Username already exists!");
                 alert.showAndWait();

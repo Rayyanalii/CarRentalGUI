@@ -34,7 +34,7 @@ public class AdminLogin {
         Stage stage = new Stage();
         stage.setScene(new Scene(root,720,480));
         stage.setResizable(false);
-        stage.setTitle("Menu Page");
+        stage.setTitle("Main Menu");
         stage.show();
         ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
     }
@@ -93,7 +93,7 @@ public class AdminLogin {
         Stage stage = new Stage();
         stage.setScene(new Scene(root,720,480));
         stage.setResizable(false);
-        stage.setTitle("Menu Page");
+        stage.setTitle("Admin Panel");
         stage.show();
         Object obj=event.getSource();
         if(obj instanceof Button){
