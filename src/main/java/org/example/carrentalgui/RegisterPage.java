@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Paint;
@@ -19,6 +20,44 @@ import java.io.IOException;
 public class RegisterPage {
     @FXML
     private void initialize(){
+        usernameField.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode()==KeyCode.TAB) {
+                req2.setVisible(false);
+                req.setVisible(true);
+                usernameField.getParent().getChildrenUnmodifiable().stream()
+                        .filter(node -> node.isFocusTraversable() && node != usernameField)
+                        .findFirst()
+                        .ifPresent(node -> node.requestFocus());
+            }
+        });
+        passwordField.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode()==KeyCode.TAB) {
+                req.setVisible(false);
+                req1.setVisible(true);
+                passwordField.getParent().getChildrenUnmodifiable().stream()
+                        .filter(node -> node.isFocusTraversable() && node != passwordField)
+                        .findFirst()
+                        .ifPresent(node -> node.requestFocus());
+            }
+        });
+        passwordField1.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode()==KeyCode.TAB) {
+                req1.setVisible(false);
+                passwordField1.getParent().getChildrenUnmodifiable().stream()
+                        .filter(node -> node.isFocusTraversable() && node != passwordField1)
+                        .findFirst()
+                        .ifPresent(node -> node.requestFocus());
+            }
+        });
+        GoBackButton.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode()==KeyCode.TAB) {
+                req2.setVisible(true);
+                GoBackButton.getParent().getChildrenUnmodifiable().stream()
+                        .filter(node -> node.isFocusTraversable() && node != GoBackButton)
+                        .findFirst()
+                        .ifPresent(node -> node.requestFocus());
+            }
+        });
         req2.setTextFill(Paint.valueOf("red"));
         req1.setTextFill(Paint.valueOf("red"));
         req.setTextFill(Paint.valueOf("red"));
@@ -67,7 +106,6 @@ public class RegisterPage {
     }
     @FXML
     void handleUsernameFieldKeyReleased(KeyEvent event) {
-        req2.setText("Username must be unique");
         String username=usernameField.getText();
         if(usernameField.getText().contains(" ")){
             req2.setText("Space is not allowed!");
@@ -78,10 +116,14 @@ public class RegisterPage {
         int flag=0;
         try {
             File f=new File(Code.users);
-            if(!f.exists()||username.equalsIgnoreCase("")){
+            if(!f.exists()){
+                req2.setTextFill(Paint.valueOf("green"));
+            }
+            if(username.equalsIgnoreCase("")){
                 req2.setTextFill(Paint.valueOf("red"));
             }
             else {
+                f.createNewFile();
                 BufferedReader br=new BufferedReader(new FileReader(f));
                 String buffer;
                 while((buffer=br.readLine())!=null){
@@ -291,5 +333,4 @@ public class RegisterPage {
         req1.setVisible(false);
         req2.setVisible(true);
     }
-
 }

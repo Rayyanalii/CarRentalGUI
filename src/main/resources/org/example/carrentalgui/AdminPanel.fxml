@@ -9,7 +9,6 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.carrentalgui.AdminPanel">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="517.0" stroke="BLACK" strokeType="INSIDE" width="754.0">
@@ -55,17 +54,17 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="logout" layoutX="305.0" layoutY="424.0" mnemonicParsing="false" onAction="#handleLogoutButton" prefHeight="36.0" prefWidth="133.0" text="Logout">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Button>
       <Button layoutX="209.0" layoutY="305.0" mnemonicParsing="false" onAction="#ViewCar" prefHeight="82.0" prefWidth="133.0" text="View All Cars">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
       <Button layoutX="403.0" layoutY="305.0" mnemonicParsing="false" onAction="#reservation" prefHeight="82.0" prefWidth="133.0" text="Reservations">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="logout" layoutX="305.0" layoutY="424.0" mnemonicParsing="false" onAction="#handleLogoutButton" prefHeight="36.0" prefWidth="133.0" text="Logout">
          <font>
             <Font size="15.0" />
          </font>

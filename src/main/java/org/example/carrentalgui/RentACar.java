@@ -170,14 +170,25 @@ public class RentACar {
         Optional<ButtonType> result = alert.showAndWait();
         result.ifPresent(response -> {
             if (response == buttonTypeOk) {
-                // Retrieve the input from the text field
                 String input = textField.getText();
-                Alert a=new Alert(Alert.AlertType.CONFIRMATION);
-                a.setContentText("Car has been rented successfully!");
-                a.showAndWait();
-                Code.RentACar(rowData,username,input);
-                // Continue your code here with the input
-            } else {
+                if(input.equalsIgnoreCase("")){
+                    Alert a=new Alert(Alert.AlertType.ERROR);
+                    a.setContentText("Enter a number of days!");
+                    a.showAndWait();
+                }
+                else if(!input.matches("\\d+")){
+                    Alert a=new Alert(Alert.AlertType.ERROR);
+                    a.setContentText("You entered characters. Try Again!");
+                    a.showAndWait();
+                }
+                else {
+                    Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+                    a.setContentText("Car has been rented successfully!");
+                    a.showAndWait();
+                    Code.RentACar(rowData, username, input);
+                    // Continue your code here with the input
+                }
+                } else {
                 // Handle cancel or do nothing
             }
         });

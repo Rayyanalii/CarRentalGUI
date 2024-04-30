@@ -171,10 +171,22 @@ public class ReserveACar {
         result.ifPresent(response -> {
             if (response == buttonTypeOk) {
                 String input = textField.getText();
-                Alert a=new Alert(Alert.AlertType.CONFIRMATION);
-                a.setContentText("Car has been reserved successfully!");
-                a.showAndWait();
-                Code.BookingReservation(rowData,username,input);
+                if(input.equalsIgnoreCase("")){
+                    Alert a=new Alert(Alert.AlertType.ERROR);
+                    a.setContentText("Enter a number of days!");
+                    a.showAndWait();
+                }
+                else if(!input.matches("\\d+")){
+                    Alert a=new Alert(Alert.AlertType.ERROR);
+                    a.setContentText("You entered characters. Try Again!");
+                    a.showAndWait();
+                }
+                else {
+                    Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+                    a.setContentText("Car has been reserved successfully!");
+                    a.showAndWait();
+                    Code.BookingReservation(rowData, username, input);
+                }
             } else {
             }
         });
