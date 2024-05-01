@@ -7,6 +7,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -97,16 +98,20 @@ public class DeleteCar {
             String selectedSortOption = sortComboBox.getValue();
             sortComboBox.setPromptText(selectedSortOption);
             if(selectedSortOption.equalsIgnoreCase("Name in Ascending Order")){
-                Code.NameSortAscending();
+                File f=new File(Code.available);
+                Code.NameSortAscending(f);
             }
             else if(selectedSortOption.equalsIgnoreCase("Name in descending Order")){
-                Code.NameSortDescending();
+                File f=new File(Code.available);
+                Code.NameSortDescending(f);
             }
             else if(selectedSortOption.equalsIgnoreCase("rent in ascending Order")){
-                Code.RentSortAscending();
+                File f=new File(Code.available);
+                Code.RentSortAscending(f);
             }
             else if(selectedSortOption.equalsIgnoreCase("rent in descending Order")){
-                Code.RentSortDescending();
+                File f=new File(Code.available);
+                Code.RentSortDescending(f);
             }
             Stage stage = (Stage) DeleteCar.getScene().getWindow();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("DeleteCar.fxml"));
@@ -147,9 +152,9 @@ public class DeleteCar {
         Stage stage = new Stage();
         stage.setScene(new Scene(root,720,480));
         stage.setResizable(false);
-        stage.setTitle("Menu Page");
+        stage.setTitle("Admin Panel");
         stage.show();
-        ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+        ((Stage)(((Node)event.getSource()).getScene().getWindow())).close();
     }
 
     @FXML

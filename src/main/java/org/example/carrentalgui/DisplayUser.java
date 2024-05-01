@@ -7,6 +7,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -70,18 +71,23 @@ public class DisplayUser {
         sortComboBox.setOnAction(event -> {
             String selectedSortOption = sortComboBox.getValue();
             sortComboBox.setPromptText(selectedSortOption);
-  //          if(selectedSortOption.equalsIgnoreCase("Name in Ascending Order")){
-//                Code.NameSortAscending();
-    //        }
-  //          else if(selectedSortOption.equalsIgnoreCase("Name in descending Order")){
-   //             Code.NameSortDescending();
-   //         }
-    //        else if(selectedSortOption.equalsIgnoreCase("rent in ascending Order")){
-  //              Code.RentSortAscending();
- //           }
-    //        else if(selectedSortOption.equalsIgnoreCase("rent in descending Order")){
-  //              Code.RentSortDescending();
-  //          }
+            if(selectedSortOption.equalsIgnoreCase("Name in Ascending Order")){
+                File f=new File(Code.users);
+                Code.NameSortAscending(f);
+            }
+            else if(selectedSortOption.equalsIgnoreCase("Name in descending Order")){
+                File f=new File(Code.users);
+               Code.NameSortDescending(f);
+            }
+            Stage stage = (Stage) sortComboBox.getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("DisplayUser.fxml"));
+            Parent root;
+            try {
+                root = loader.load();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            stage.getScene().setRoot(root);
         });
     }
 
@@ -112,9 +118,9 @@ public class DisplayUser {
         Stage stage = new Stage();
         stage.setScene(new Scene(root,720,480));
         stage.setResizable(false);
-        stage.setTitle("Menu Page");
+        stage.setTitle("Admin Panel");
         stage.show();
-        ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+        ((Stage)(((Node)event.getSource()).getScene().getWindow())).close();
     }
 
     @FXML

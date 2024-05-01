@@ -3,6 +3,7 @@ package org.example.carrentalgui;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -100,9 +101,9 @@ public class RegisterPage {
         Stage stage = new Stage();
         stage.setScene(new Scene(root,720,480));
         stage.setResizable(false);
-        stage.setTitle("Main Menu");
+        stage.setTitle("User Menu");
         stage.show();
-        ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+        ((Stage)(((Node)event.getSource()).getScene().getWindow())).close();
     }
     @FXML
     void handleUsernameFieldKeyReleased(KeyEvent event) {
@@ -199,9 +200,9 @@ public class RegisterPage {
         Stage stage = new Stage();
         stage.setScene(new Scene(root,720,480));
         stage.setResizable(false);
-        stage.setTitle("User Login");
+        stage.setTitle("User Login Panel");
         stage.show();
-        ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+        ((Stage)(((Node)event.getSource()).getScene().getWindow())).close();
     }
 
     @FXML
@@ -308,9 +309,9 @@ public class RegisterPage {
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root, 720, 480));
                 stage.setResizable(false);
-                stage.setTitle("Login Page");
+                stage.setTitle("User Menu");
                 stage.show();
-                ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
+                ((Stage) (((Node) event.getSource()).getScene().getWindow())).close();
             }
         }
     }

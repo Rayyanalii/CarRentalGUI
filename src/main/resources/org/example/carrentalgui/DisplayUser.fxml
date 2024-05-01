@@ -40,8 +40,6 @@
                 <FXCollections fx:factory="observableArrayList">
                     <String fx:value="Name in Ascending Order" />
                     <String fx:value="Name in Descending Order" />
-                    <String fx:value="Rent in Ascending Order" />
-                    <String fx:value="Rent in Descending Order" />
                 </FXCollections>
             </items>
         </ComboBox>

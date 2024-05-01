@@ -3,6 +3,7 @@ package org.example.carrentalgui;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -95,13 +96,7 @@ public class AdminLogin {
         stage.setResizable(false);
         stage.setTitle("Admin Panel");
         stage.show();
-        Object obj=event.getSource();
-        if(obj instanceof Button){
-            ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
-        }
-        else if (obj instanceof TextField){
-            ((Stage)(((TextField)event.getSource()).getScene().getWindow())).close();
-        }
+        ((Stage)(((Node)event.getSource()).getScene().getWindow())).close();
     }
 }
 

@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -123,15 +124,9 @@ public class UserLoginPageController {
         stage = new Stage();
         stage.setScene(new Scene(root,720,480));
         stage.setResizable(false);
-        stage.setTitle("Menu Page");
+        stage.setTitle("User Panel");
         stage.show();
-        Object obj=event.getSource();
-        if(obj instanceof Button){
-            ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
-        }
-        else if (obj instanceof TextField){
-            ((Stage)(((TextField)event.getSource()).getScene().getWindow())).close();
-        }
+        ((Stage)(((Node)event.getSource()).getScene().getWindow())).close();
     }
 
     @FXML
@@ -141,7 +136,7 @@ public class UserLoginPageController {
         Stage stage = new Stage();
         stage.setScene(new Scene(root,720,480));
         stage.setResizable(false);
-        stage.setTitle("User Register");
+        stage.setTitle("User Register Panel");
         stage.show();
         ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
     }
