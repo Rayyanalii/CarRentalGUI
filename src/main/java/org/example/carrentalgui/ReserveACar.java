@@ -102,16 +102,20 @@ public class ReserveACar {
             String selectedSortOption = sortComboBox.getValue();
             sortComboBox.setPromptText(selectedSortOption);
             if(selectedSortOption.equalsIgnoreCase("Name in Ascending Order")){
-                Code.NameSortAscending();
+                File f=new File(Code.available);
+                Code.NameSortAscending(f);
             }
             else if(selectedSortOption.equalsIgnoreCase("Name in descending Order")){
-                Code.NameSortDescending();
+                File f=new File(Code.available);
+                Code.NameSortDescending(f);
             }
             else if(selectedSortOption.equalsIgnoreCase("rent in ascending Order")){
-                Code.RentSortAscending();
+                File f=new File(Code.available);
+                Code.RentSortAscending(f);
             }
             else if(selectedSortOption.equalsIgnoreCase("rent in descending Order")){
-                Code.RentSortDescending();
+                File f=new File(Code.available);
+                Code.RentSortDescending(f);
             }
             Stage stage = (Stage) sortComboBox.getScene().getWindow();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ReserveACar.fxml"));
@@ -171,10 +175,22 @@ public class ReserveACar {
         result.ifPresent(response -> {
             if (response == buttonTypeOk) {
                 String input = textField.getText();
-                Alert a=new Alert(Alert.AlertType.CONFIRMATION);
-                a.setContentText("Car has been reserved successfully!");
-                a.showAndWait();
-                Code.BookingReservation(rowData,username,input);
+                if(input.equalsIgnoreCase("")){
+                    Alert a=new Alert(Alert.AlertType.ERROR);
+                    a.setContentText("Enter a number of days!");
+                    a.showAndWait();
+                }
+                else if(!input.matches("\\d+")){
+                    Alert a=new Alert(Alert.AlertType.ERROR);
+                    a.setContentText("You entered characters. Try Again!");
+                    a.showAndWait();
+                }
+                else {
+                    Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+                    a.setContentText("Car has been reserved successfully!");
+                    a.showAndWait();
+                    Code.BookingReservation(rowData, username, input);
+                }
             } else {
             }
         });

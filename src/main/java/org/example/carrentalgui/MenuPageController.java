@@ -2,6 +2,7 @@ package org.example.carrentalgui;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -25,9 +26,9 @@ public class MenuPageController {
         Stage stage = new Stage();
         stage.setScene(new Scene(root,720,480));
         stage.setResizable(false);
-        stage.setTitle("Admin Menu");
+        stage.setTitle("Admin Login Menu");
         stage.show();
-        ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+        ((Stage)(((Node)event.getSource()).getScene().getWindow())).close();
     }
 
     @FXML
@@ -39,7 +40,7 @@ public class MenuPageController {
         stage.setResizable(false);
         stage.setTitle("User Menu");
         stage.show();
-        ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+        ((Stage)(((Node)event.getSource()).getScene().getWindow())).close();
     }
 
 }

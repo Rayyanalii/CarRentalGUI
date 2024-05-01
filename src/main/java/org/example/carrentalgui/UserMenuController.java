@@ -40,7 +40,7 @@ public class UserMenuController {
         Stage stage = new Stage();
         stage.setScene(new Scene(root,720,480));
         stage.setResizable(false);
-        stage.setTitle("User Login");
+        stage.setTitle("User Login Panel");
         stage.show();
         ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
     }
@@ -52,7 +52,7 @@ public class UserMenuController {
         Stage stage = new Stage();
         stage.setScene(new Scene(root,720,480));
         stage.setResizable(false);
-        stage.setTitle("User Register");
+        stage.setTitle("User Register Panel");
         stage.show();
         ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
     }

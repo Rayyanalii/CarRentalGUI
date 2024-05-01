@@ -86,16 +86,20 @@ public class ViewCars {
             String selectedSortOption = sortComboBox.getValue();
             sortComboBox.setPromptText(selectedSortOption);
             if(selectedSortOption.equalsIgnoreCase("Name in Ascending Order")){
-                Code.NameSortAscending();
+                File f=new File(Code.available);
+                Code.NameSortAscending(f);
             }
             else if(selectedSortOption.equalsIgnoreCase("Name in descending Order")){
-                Code.NameSortDescending();
+                File f=new File(Code.available);
+                Code.NameSortDescending(f);
             }
             else if(selectedSortOption.equalsIgnoreCase("rent in ascending Order")){
-                Code.RentSortAscending();
+                File f=new File(Code.available);
+                Code.RentSortAscending(f);
             }
             else if(selectedSortOption.equalsIgnoreCase("rent in descending Order")){
-                Code.RentSortDescending();
+                File f=new File(Code.available);
+                Code.RentSortDescending(f);
             }
             Stage stage = (Stage) sortComboBox.getScene().getWindow();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ViewCars.fxml"));

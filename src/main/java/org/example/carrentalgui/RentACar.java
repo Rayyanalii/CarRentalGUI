@@ -102,16 +102,20 @@ public class RentACar {
             String selectedSortOption = sortComboBox.getValue();
             sortComboBox.setPromptText(selectedSortOption);
             if(selectedSortOption.equalsIgnoreCase("Name in Ascending Order")){
-                Code.NameSortAscending();
+                File f=new File(Code.available);
+                Code.NameSortAscending(f);
             }
             else if(selectedSortOption.equalsIgnoreCase("Name in descending Order")){
-                Code.NameSortDescending();
+                File f=new File(Code.available);
+                Code.NameSortDescending(f);
             }
             else if(selectedSortOption.equalsIgnoreCase("rent in ascending Order")){
-                Code.RentSortAscending();
+                File f=new File(Code.available);
+                Code.RentSortAscending(f);
             }
             else if(selectedSortOption.equalsIgnoreCase("rent in descending Order")){
-                Code.RentSortDescending();
+                File f=new File(Code.available);
+                Code.RentSortDescending(f);
             }
             Stage stage = (Stage) sortComboBox.getScene().getWindow();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("RentACar.fxml"));
@@ -170,14 +174,25 @@ public class RentACar {
         Optional<ButtonType> result = alert.showAndWait();
         result.ifPresent(response -> {
             if (response == buttonTypeOk) {
-                // Retrieve the input from the text field
                 String input = textField.getText();
-                Alert a=new Alert(Alert.AlertType.CONFIRMATION);
-                a.setContentText("Car has been rented successfully!");
-                a.showAndWait();
-                Code.RentACar(rowData,username,input);
-                // Continue your code here with the input
-            } else {
+                if(input.equalsIgnoreCase("")){
+                    Alert a=new Alert(Alert.AlertType.ERROR);
+                    a.setContentText("Enter a number of days!");
+                    a.showAndWait();
+                }
+                else if(!input.matches("\\d+")){
+                    Alert a=new Alert(Alert.AlertType.ERROR);
+                    a.setContentText("You entered characters. Try Again!");
+                    a.showAndWait();
+                }
+                else {
+                    Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+                    a.setContentText("Car has been rented successfully!");
+                    a.showAndWait();
+                    Code.RentACar(rowData, username, input);
+                    // Continue your code here with the input
+                }
+                } else {
                 // Handle cancel or do nothing
             }
         });

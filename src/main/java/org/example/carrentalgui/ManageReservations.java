@@ -7,6 +7,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -113,16 +114,20 @@ public class ManageReservations {
             String selectedSortOption = sortComboBox.getValue();
             sortComboBox.setPromptText(selectedSortOption);
             if(selectedSortOption.equalsIgnoreCase("Name in Ascending Order")){
-                Code.NameSortAscending();
+                File f=new File(Code.reservations);
+                Code.NameSortAscending(f);
             }
             else if(selectedSortOption.equalsIgnoreCase("Name in descending Order")){
-                Code.NameSortDescending();
+                File f=new File(Code.reservations);
+                Code.NameSortDescending(f);
             }
             else if(selectedSortOption.equalsIgnoreCase("rent in ascending Order")){
-                Code.RentSortAscending();
+                File f=new File(Code.reservations);
+                Code.RentSortAscending(f);
             }
             else if(selectedSortOption.equalsIgnoreCase("rent in descending Order")){
-                Code.RentSortDescending();
+                File f=new File(Code.reservations);
+                Code.RentSortDescending(f);
             }
             Stage stage = (Stage) Enqueue.getScene().getWindow();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ManageReservations.fxml"));
@@ -164,7 +169,7 @@ public class ManageReservations {
         stage.setResizable(false);
         stage.setTitle("Admin Panel");
         stage.show();
-        ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+        ((Stage)(((Node)event.getSource()).getScene().getWindow())).close();
     }
 
     @FXML

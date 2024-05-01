@@ -452,13 +452,11 @@ public class Code {
             e.printStackTrace();
         }
     }
-    public static void NameSortAscending(){
+    public static void NameSortAscending(File file){
         try {
-            File f = new File(available);
-            if (!f.exists()) {
-                System.out.println("No available cars");
+            if (!file.exists()) {
             } else {
-                BufferedReader br = new BufferedReader(new FileReader(f));
+                BufferedReader br = new BufferedReader(new FileReader(file));
                 String line;
                 ArrayList<String> unsorted=new ArrayList<>();
                 while((line=br.readLine())!=null){
@@ -474,47 +472,7 @@ public class Code {
                     }
                 }
                 br.close();
-                f.delete();
-                File file=new File(available);
-                if(!f.exists()){
-                    f.createNewFile();
-                }
-                BufferedWriter bw=new BufferedWriter(new FileWriter(file));
-                for (int i = 0; i < unsorted.size(); i++) {
-                    bw.write(unsorted.get(i));
-                    bw.newLine();
-                }
-                bw.close();
-            }
-        }
-        catch (IOException e){
-            e.printStackTrace();
-        }
-    }
-    public static void NameSortDescending(){
-        try {
-            File f = new File(available);
-            if (!f.exists()) {
-                System.out.println("No available cars");
-            } else {
-                BufferedReader br = new BufferedReader(new FileReader(f));
-                String line;
-                ArrayList<String> unsorted=new ArrayList<>();
-                while((line=br.readLine())!=null){
-                    if(unsorted.isEmpty()){
-                        unsorted.add(line);
-                        continue;
-                    }
-                    unsorted.add(line);
-                    for (int i = unsorted.size()-1; i > 0 && unsorted.get(i).compareToIgnoreCase(unsorted.get(i-1))>0 ; i--) {
-                        String temp=unsorted.get(i);
-                        unsorted.set(i,unsorted.get(i-1));
-                        unsorted.set(i-1,temp);
-                    }
-                }
-                br.close();
-                f.delete();
-                File file=new File(available);
+                file.delete();
                 if(!file.exists()){
                     file.createNewFile();
                 }
@@ -530,10 +488,45 @@ public class Code {
             e.printStackTrace();
         }
     }
-    public static void RentSortAscending(){
+    public static void NameSortDescending(File file){
         try {
-            File f = new File(available);
-            BufferedReader br = new BufferedReader(new FileReader(f));
+            if (!file.exists()) {
+            } else {
+                BufferedReader br = new BufferedReader(new FileReader(file));
+                String line;
+                ArrayList<String> unsorted=new ArrayList<>();
+                while((line=br.readLine())!=null){
+                    if(unsorted.isEmpty()){
+                        unsorted.add(line);
+                        continue;
+                    }
+                    unsorted.add(line);
+                    for (int i = unsorted.size()-1; i > 0 && unsorted.get(i).compareToIgnoreCase(unsorted.get(i-1))>0 ; i--) {
+                        String temp=unsorted.get(i);
+                        unsorted.set(i,unsorted.get(i-1));
+                        unsorted.set(i-1,temp);
+                    }
+                }
+                br.close();
+                file.delete();
+                if(!file.exists()){
+                    file.createNewFile();
+                }
+                BufferedWriter bw=new BufferedWriter(new FileWriter(file));
+                for (int i = 0; i < unsorted.size(); i++) {
+                    bw.write(unsorted.get(i));
+                    bw.newLine();
+                }
+                bw.close();
+            }
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+    public static void RentSortAscending(File file){
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
             String line;
             ArrayList<String> unsorted = new ArrayList<>();
             ArrayList<Integer> rent=new ArrayList<>();
@@ -557,8 +550,7 @@ public class Code {
                 }
             }
             br.close();
-            f.delete();
-            File file=new File(available);
+            file.delete();;
             if(!file.exists()){
                 file.createNewFile();
             }
@@ -573,10 +565,9 @@ public class Code {
             e.printStackTrace();
         }
     }
-    public static void RentSortDescending(){
+    public static void RentSortDescending(File file){
         try {
-            File f = new File(available);
-            BufferedReader br = new BufferedReader(new FileReader(f));
+            BufferedReader br = new BufferedReader(new FileReader(file));
             String line;
             ArrayList<String> unsorted = new ArrayList<>();
             ArrayList<Integer> rent=new ArrayList<>();
@@ -600,8 +591,7 @@ public class Code {
                 }
             }
             br.close();
-            f.delete();
-            File file=new File(available);
+            file.delete();
             if(!file.exists()){
                 file.createNewFile();
             }

@@ -44,7 +44,7 @@ public class UserPanel {
         Stage stage = new Stage();
         stage.setScene(new Scene(root,720,480));
         stage.setResizable(false);
-        stage.setTitle("Login Page");
+        stage.setTitle("Main Menu");
         stage.show();
         ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
     }
@@ -57,7 +57,7 @@ public class UserPanel {
         Stage stage = new Stage();
         stage.setScene(new Scene(root,720,480));
         stage.setResizable(false);
-        stage.setTitle("Login Page");
+        stage.setTitle("Rent A Car");
         stage.show();
         ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
     }
@@ -70,7 +70,7 @@ public class UserPanel {
         Stage stage = new Stage();
         stage.setScene(new Scene(root,720,480));
         stage.setResizable(false);
-        stage.setTitle("Login Page");
+        stage.setTitle("Reserve A Car");
         stage.show();
         ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
     }
@@ -83,7 +83,7 @@ public class UserPanel {
         Stage stage = new Stage();
         stage.setScene(new Scene(root,720,480));
         stage.setResizable(false);
-        stage.setTitle("Login Page");
+        stage.setTitle("Return A Car");
         stage.show();
         ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
     }

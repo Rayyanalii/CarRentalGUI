@@ -3,6 +3,7 @@ package org.example.carrentalgui;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -24,7 +25,7 @@ public class AdminPanel {
         stage.setResizable(false);
         stage.setTitle("View All Cars");
         stage.show();
-        ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+        ((Stage)(((Node)event.getSource()).getScene().getWindow())).close();
     }
 
     @FXML
@@ -36,7 +37,7 @@ public class AdminPanel {
         stage.setResizable(false);
         stage.setTitle("Add A Car");
         stage.show();
-        ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+        ((Stage)(((Node)event.getSource()).getScene().getWindow())).close();
     }
 
     @FXML
@@ -48,7 +49,7 @@ public class AdminPanel {
         stage.setResizable(false);
         stage.setTitle("Delete A Car");
         stage.show();
-        ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+        ((Stage)(((Node)event.getSource()).getScene().getWindow())).close();
     }
 
     @FXML
@@ -60,7 +61,7 @@ public class AdminPanel {
         stage.setResizable(false);
         stage.setTitle("Display All Users");
         stage.show();
-        ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+        ((Stage)(((Node)event.getSource()).getScene().getWindow())).close();
     }
 
     @FXML
@@ -72,7 +73,7 @@ public class AdminPanel {
         stage.setResizable(false);
         stage.setTitle("Main Menu");
         stage.show();
-        ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+        ((Stage)(((Node)event.getSource()).getScene().getWindow())).close();
     }
 
     @FXML
@@ -84,7 +85,7 @@ public class AdminPanel {
         stage.setResizable(false);
         stage.setTitle("Manage Reservations");
         stage.show();
-        ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+        ((Stage)(((Node)event.getSource()).getScene().getWindow())).close();
     }
 
 }
