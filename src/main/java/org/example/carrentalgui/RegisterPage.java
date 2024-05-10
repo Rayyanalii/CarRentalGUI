@@ -21,6 +21,7 @@ import java.io.IOException;
 public class RegisterPage {
     @FXML
     private void initialize(){
+        req.setText("Must have atleast 8 characters \nMust have 3 digits and 1 special character");
         usernameField.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             if (event.getCode()==KeyCode.TAB) {
                 req2.setVisible(false);
@@ -93,6 +94,7 @@ public class RegisterPage {
 
     @FXML
     private TextField usernameField;
+    boolean special;
 
     @FXML
     void handleBackButton(ActionEvent event) throws IOException {
@@ -107,12 +109,31 @@ public class RegisterPage {
     }
     @FXML
     void handleUsernameFieldKeyReleased(KeyEvent event) {
+        special=false;
         String username=usernameField.getText();
+        for (int i = 0; i < username.length(); i++) {
+            if(Character.isLetterOrDigit(username.charAt(i))){
+            }
+            else {
+                special=true;
+            }
+        }
         if(usernameField.getText().contains(" ")){
             req2.setText("Space is not allowed!");
             req2.setTextFill(Paint.valueOf("red"));
             req2.setVisible(true);
             return;
+        }
+        else if(special) {
+            req2.setText("Must not contain special characters!");
+            req2.setTextFill(Paint.valueOf("red"));
+            req2.setVisible(true);
+            return;
+        }
+        else{
+            req2.setText("Username must be unique");
+            req2.setTextFill(Paint.valueOf("red"));
+            req2.setVisible(true);
         }
         int flag=0;
         try {
@@ -146,8 +167,10 @@ public class RegisterPage {
 
     @FXML
     void handlePasswordFieldKeyReleased(KeyEvent event) {
-        req.setText("Must have 3 digits and 1 special character");
+        req.setLayoutY(249.0);
+        req.setText("Must have atleast 8 characters \nMust have 3 digits and 1 special character");
         if(passwordField.getText().contains(" ")){
+            req.setLayoutY(258.0);
             req.setText("Space is not allowed!");
             req.setTextFill(Paint.valueOf("red"));
             req.setVisible(true);
@@ -166,7 +189,7 @@ public class RegisterPage {
                     special++;
                 }
             }
-            if(num>=3&&special>=1){
+            if(num>=3&&special>=1&&password.length()>=8){
                 req.setTextFill(Paint.valueOf("green"));
             }
             else {
@@ -181,6 +204,17 @@ public class RegisterPage {
     void handleReenterReleased(KeyEvent event) {
         String password1=passwordField.getText();
         String password2=passwordField1.getText();
+        if(passwordField1.getText().contains(" ")){
+            req1.setText("Space is not allowed!");
+            req1.setTextFill(Paint.valueOf("red"));
+            req1.setVisible(true);
+            return;
+        }
+        else {
+            req1.setText("Password must match!");
+            req1.setTextFill(Paint.valueOf("red"));
+            req1.setVisible(true);
+        }
         if(password2.equalsIgnoreCase("")){
             req1.setTextFill(Paint.valueOf("red"));
             return;
@@ -278,6 +312,11 @@ public class RegisterPage {
             else if(passwordField1.getText().contains(" ")){
                 Alert alert=new Alert(Alert.AlertType.ERROR);
                 alert.setContentText("Re-Enter Password Field has space. Try Again");
+                alert.showAndWait();
+            }
+            else if (special){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Username contains Special Characters");
                 alert.showAndWait();
             }
             else if (Code.UserRegistration(username, password, password1).equals("exist")) {

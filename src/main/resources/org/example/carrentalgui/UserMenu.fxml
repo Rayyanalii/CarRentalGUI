@@ -9,7 +9,6 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="485.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.carrentalgui.UserMenuController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="497.0" stroke="BLACK" strokeType="INSIDE" width="734.0">
@@ -30,7 +29,7 @@
             </LinearGradient>
          </fill>
       </Rectangle>
-      <Label layoutX="195.0" layoutY="55.0" text="Welcome To User Panel">
+      <Label layoutX="195.0" layoutY="55.0" text="Welcome To User Menu">
          <font>
             <Font name="System Bold" size="31.0" />
          </font>

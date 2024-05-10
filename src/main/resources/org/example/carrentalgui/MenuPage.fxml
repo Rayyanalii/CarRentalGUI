@@ -9,7 +9,6 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="493.0" prefWidth="731.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.carrentalgui.MenuPageController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="494.0" stroke="BLACK" strokeType="INSIDE" width="731.0">
@@ -40,7 +39,7 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Button fx:id="UserPanelButton" layoutX="155.0" layoutY="251.0" mnemonicParsing="false" onMouseClicked="#handleUserPanel" prefHeight="94.0" prefWidth="132.0" text="User Panel">
+      <Button fx:id="UserPanelButton" layoutX="155.0" layoutY="251.0" mnemonicParsing="false" onMouseClicked="#handleUserPanel" prefHeight="94.0" prefWidth="132.0" text="User Menu">
          <font>
             <Font size="15.0" />
          </font>
@@ -50,7 +49,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Button fx:id="AdminPanelButton" layoutX="427.0" layoutY="251.0" mnemonicParsing="false" onMouseClicked="#handleAdminPanel" prefHeight="94.0" prefWidth="132.0" text="Admin Panel">
+      <Button fx:id="AdminPanelButton" layoutX="427.0" layoutY="251.0" mnemonicParsing="false" onMouseClicked="#handleAdminPanel" prefHeight="94.0" prefWidth="132.0" text="Admin Menu">
          <font>
             <Font size="15.0" />
          </font>
