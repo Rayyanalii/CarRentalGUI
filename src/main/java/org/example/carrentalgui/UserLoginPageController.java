@@ -38,7 +38,7 @@ public class UserLoginPageController {
         stage = new Stage();
         stage.setScene(new Scene(root,720,480));
         stage.setResizable(false);
-        stage.setTitle("Main Menu");
+        stage.setTitle("User Menu");
         stage.show();
         ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
     }
