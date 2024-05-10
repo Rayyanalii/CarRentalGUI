@@ -159,7 +159,8 @@ public class DeleteCar {
 
     @FXML
     void handleDeletebutton(ActionEvent event) throws IOException {
-        Code.DeleteCar(rowData);
+        File file = new File(Code.available);
+        Code.DeleteCar(rowData,file);
         Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
         alert.setContentText("Car has been deleted successfully!");
         alert.showAndWait();

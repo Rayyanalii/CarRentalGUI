@@ -292,10 +292,10 @@ public class Code {
             e.printStackTrace();
         }
     }
-    public static void DeleteCar(String[] data) throws ArrayIndexOutOfBoundsException{
+    public static void DeleteCar(String[] data, File file) throws ArrayIndexOutOfBoundsException{
         String buffer;
             try {
-                File f1 = new File(available);
+                File f1 = file;
                 File f2 = new File(temp);
                 BufferedReader reader=new BufferedReader(new FileReader(f1));
                 BufferedWriter writer=new BufferedWriter(new FileWriter(f2));
