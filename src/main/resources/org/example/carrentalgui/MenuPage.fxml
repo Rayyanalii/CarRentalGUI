@@ -39,7 +39,7 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Button fx:id="UserPanelButton" layoutX="155.0" layoutY="251.0" mnemonicParsing="false" onMouseClicked="#handleUserPanel" prefHeight="94.0" prefWidth="132.0" text="User Menu">
+      <Button fx:id="UserPanelButton" layoutX="155.0" layoutY="251.0" mnemonicParsing="false" onAction="#handleUserPanel" prefHeight="94.0" prefWidth="132.0" text="User Menu">
          <font>
             <Font size="15.0" />
          </font>
@@ -49,7 +49,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Button fx:id="AdminPanelButton" layoutX="427.0" layoutY="251.0" mnemonicParsing="false" onMouseClicked="#handleAdminPanel" prefHeight="94.0" prefWidth="132.0" text="Admin Menu">
+      <Button fx:id="AdminPanelButton" layoutX="427.0" layoutY="251.0" mnemonicParsing="false" onAction="#handleAdminPanel" prefHeight="94.0" prefWidth="132.0" text="Admin Menu">
          <font>
             <Font size="15.0" />
          </font>

@@ -138,7 +138,7 @@ public class UserLoginPageController {
         stage.setResizable(false);
         stage.setTitle("User Register Panel");
         stage.show();
-        ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+        ((Stage)(((Node)event.getSource()).getScene().getWindow())).close();
     }
 
 }

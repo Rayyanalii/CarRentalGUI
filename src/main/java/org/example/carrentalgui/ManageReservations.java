@@ -174,7 +174,8 @@ public class ManageReservations {
 
     @FXML
     void handleRemovebutton(ActionEvent event) throws IOException {
-        Code.DeleteCar(rowData);
+        File file=new File(Code.reservations);
+        Code.DeleteCar(rowData,file);
         Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
         alert.setContentText("Car has been removed successfully!");
         alert.showAndWait();

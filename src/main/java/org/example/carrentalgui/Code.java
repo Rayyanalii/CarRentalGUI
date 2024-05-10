@@ -6,39 +6,6 @@ import java.util.*;
 import static java.lang.System.exit;
 
 public class Code {
-    static class QueueList{
-        String username;
-        String make;
-        String model;
-        String year;
-        String rent;
-        QueueList next;
-        String days;
-        public QueueList(String make, String model, String year,String username,String rent,String days) {
-            this.username=username;
-            this.make = make;
-            this.model = model;
-            this.year = year;
-            this.rent=rent;
-            this.days=days;
-        }
-    }
-    static class RentBST{
-        String make;
-        String model;
-        String year;
-        int rent;
-        RentBST left;
-        RentBST right;
-        public RentBST(String make, String model, String year,int rent) {
-            this.make = make;
-            this.model = model;
-            this.year = year;
-            this.rent=rent;
-        }
-    }
-    static RentBST root;
-    static QueueList Enqueue,Dequeue;
     static class LockedOutException extends Exception{
         public LockedOutException(String error){
             super(error);
@@ -284,20 +251,16 @@ public class Code {
             bw.newLine();
             bw.close();
             fw.close();
-            int intRent=Integer.parseInt(rent);
-            RentBST node=new RentBST(make,model,year,intRent);
-            root=InsertionInBST(node,root);
         }
         catch (IOException e){
             e.printStackTrace();
         }
     }
-    public static void DeleteCar(String[] data) throws ArrayIndexOutOfBoundsException{
+    public static void DeleteCar(String[] data, File file) throws ArrayIndexOutOfBoundsException{
         String buffer;
             try {
-                File f1 = new File(available);
                 File f2 = new File(temp);
-                BufferedReader reader=new BufferedReader(new FileReader(f1));
+                BufferedReader reader=new BufferedReader(new FileReader(file));
                 BufferedWriter writer=new BufferedWriter(new FileWriter(f2));
                 String line;
                 while((line=reader.readLine())!=null){
@@ -306,24 +269,42 @@ public class Code {
                 }
                 writer.close();
                 reader.close();
-                f1.delete();
+                file.delete();
                 String[] split;
                 BufferedReader br = new BufferedReader(new FileReader(f2));
-                BufferedWriter bw = new BufferedWriter(new FileWriter(f1));
-                while ((buffer = br.readLine()) != null) {
-                    split = buffer.split(" ");
-                    if (split[0].equalsIgnoreCase(data[0]) && split[1].equalsIgnoreCase(data[1]) && split[2].equalsIgnoreCase(data[2])&&split[3].equalsIgnoreCase(data[3])) {
-                    } else {
-                        bw.write(buffer);
-                        bw.newLine();
+                BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+                if(file.equals(new File(available))) {
+                    while ((buffer = br.readLine()) != null) {
+                        split = buffer.split(" ");
+                        if (split[0].equalsIgnoreCase(data[0]) && split[1].equalsIgnoreCase(data[1]) && split[2].equalsIgnoreCase(data[2]) && split[3].equalsIgnoreCase(data[3])) {
+                        } else {
+                            bw.write(buffer);
+                            bw.newLine();
+                        }
                     }
+                    bw.close();
+                    br.close();
+                    f2.delete();
                 }
-                bw.close();
-                br.close();
-                f2.delete();
-                int intRent=Integer.parseInt(data[3]);
-                RentBST node=new RentBST(data[0],data[1],data[2],intRent);
-                root=deletionInBST(node,root);
+                else if(file.equals(new File(reservations))){
+                    while ((buffer = br.readLine()) != null) {
+                        split = buffer.split(" ");
+                        if (split[0].equalsIgnoreCase(data[0]) && split[1].equalsIgnoreCase(data[1]) && split[2].equalsIgnoreCase(data[2]) && split[3].equalsIgnoreCase(data[3])&&split[4].equalsIgnoreCase(data[4])) {
+                        } else {
+                            bw.write(buffer);
+                            bw.newLine();
+                        }
+                    }
+                    bw.close();
+                    br.close();
+                    f2.delete();
+                    File file1=new File(available);
+                    BufferedWriter bufferedWriter=new BufferedWriter(new FileWriter(file1,true));
+                    buffer="%s %s %s %s".formatted(data[1],data[2],data[3],data[4]);
+                    bufferedWriter.write(buffer);
+                    bufferedWriter.newLine();
+                    bufferedWriter.close();
+                }
             }catch (IOException e) {
                 e.printStackTrace();
             }
@@ -606,39 +587,6 @@ public class Code {
             e.printStackTrace();
         }
     }
-    public static void InsertInList(String line){
-        String[] Splitted=line.split(" ");
-        String username=Splitted[0];
-        String make=Splitted[1];
-        String model=Splitted[2];
-        String year=Splitted[3];
-        String rent=Splitted[4];
-        String days=Splitted[5];
-        QueueList node=new QueueList(make,model,year,username,rent,days);
-        if(Enqueue==null){
-            Enqueue=node;
-            Dequeue=node;
-        }
-        else{
-            Dequeue.next=node;
-            Dequeue=node;
-        }
-    }
-    public static void ReservationToList(){
-        try{
-            File f=new File(reservations);
-            if(f.exists()){
-                BufferedReader br=new BufferedReader(new FileReader(f));
-                String line;
-                while((line=br.readLine())!=null){
-                    InsertInList(line);
-                }
-            }
-        }
-        catch (IOException e){
-            e.printStackTrace();
-        }
-    }
     public static void BookingReservation(String[] data,String name,String days){
         int intdays=Integer.parseInt(days);
         int intrent= Integer.parseInt(data[3]);
@@ -681,287 +629,6 @@ public class Code {
             bw.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }
-    }
-    public static void PrintReservations(){
-        System.out.println("-------------------------------------------------------------------------");
-        System.out.println("Reservations: ");
-        QueueList current=Enqueue;
-        if(current!=null) {
-            while (current != null) {
-                System.out.println(current.username + " " + current.make + " " + current.model + " " + current.year + " " + current.rent + " " + current.days);
-                current = current.next;
-            }
-        }
-        else{
-            System.out.println("No reservations found!");
-        }
-    }
-    public static void DequeueReservations(){
-        try {
-            File f1 = new File(available);
-            File f2 = new File(reservations);
-            if(!f1.exists()){
-                f1.createNewFile();
-            }
-            if(!f2.exists()){
-                f2.createNewFile();
-            }
-            BufferedReader br1 = new BufferedReader(new FileReader(f1));
-            String buffer1;
-            int flag = 0;
-            ArrayList<String> availableCars = new ArrayList<>();
-            QueueList current = Enqueue;
-            QueueList prev = null;
-            if (current != null) {
-                while ((buffer1 = br1.readLine()) != null) {
-                    current=Enqueue;
-                    flag = 1;
-                    if (current == null) {
-                        availableCars.add(buffer1);
-                        while ((buffer1 = br1.readLine()) != null) {
-                            availableCars.add(buffer1);
-                        }
-                        break;
-                    }
-                    String[] AllWithHeadings = buffer1.split(" ");
-                    String[] MakeWithHeading = AllWithHeadings[0].split(":");
-                    String[] ModelWithHeading = AllWithHeadings[1].split(":");
-                    String[] YearWithHeading = AllWithHeadings[2].split(":");
-                    String[] RentWithHeading = AllWithHeadings[3].split(":");
-                    String make = MakeWithHeading[1];
-                    String model = ModelWithHeading[1];
-                    String year = YearWithHeading[1];
-                    String rent = RentWithHeading[1];
-                    int check=0;
-                    while (current != null) {
-                        if ((current.make.equalsIgnoreCase(make) && current.model.equalsIgnoreCase(model)) && (current.year.equalsIgnoreCase(year) && current.rent.equalsIgnoreCase(rent))) {
-                            check=1;
-                            String filename = "C:\\Users\\rayya\\Desktop\\%s RentedCars.txt".formatted(current.username);
-                            File f = new File(filename);
-                            if (!f.exists()) {
-                                f.createNewFile();
-                            }
-                            BufferedWriter bw = new BufferedWriter(new FileWriter(f, true));
-                            int days = Integer.parseInt(current.days);
-                            int Intrent = Integer.parseInt(current.rent);
-                            int total = days * Intrent;
-                            bw.write("Make:");
-                            bw.write(current.make);
-                            bw.write(" ");
-                            bw.write("Model:");
-                            bw.write(current.model);
-                            bw.write(" ");
-                            bw.write("Year:");
-                            bw.write(current.year);
-                            bw.write(" ");
-                            bw.write("RentPerDay:");
-                            bw.write(current.rent);
-                            bw.write(" ");
-                            bw.write("TotalDaysRented:");
-                            bw.write(current.days);
-                            bw.write(" ");
-                            bw.write("TotalRent:");
-                            bw.write(String.valueOf(total));
-                            bw.write(" ");
-                            bw.newLine();
-                            bw.close();
-                            System.out.println(current.make+" "+current.model+" "+current.year+" has been rented out to the reservation holder "+current.username+" successfully! ");
-                            if (prev == null) {
-                                Enqueue = Enqueue.next;
-                                current.next = null;
-                            } else if (current.next == null) {
-                                prev.next = null;
-                            } else {
-                                prev.next = current.next;
-                                current.next = null;
-                            }
-                            break;
-                        } else {
-                            prev = current;
-                            current = current.next;
-                        }
-                    }
-                    if(check==0){
-                        availableCars.add(buffer1);
-                    }
-                    else{
-                        int intRent=Integer.parseInt(rent);
-                        RentBST node=new RentBST(make,model,year,intRent);
-                        deletionInBST(node,root);
-                    }
-                }
-                if (flag == 1) {
-                    f1.delete();
-                    BufferedWriter bw1 = new BufferedWriter(new FileWriter(f1));
-                    for (int i = 0; i < availableCars.size(); i++) {
-                        bw1.write(availableCars.get(i));
-                        bw1.newLine();
-                    }
-                    bw1.close();
-                    f2.delete();
-                    BufferedWriter bw2=new BufferedWriter(new FileWriter(f2));
-                    QueueList curr=Enqueue;
-                    while(curr!=null){
-                        bw2.write(curr.username);
-                        bw2.write(" ");
-                        bw2.write(curr.make);
-                        bw2.write(" ");
-                        bw2.write(curr.model);
-                        bw2.write(" ");
-                        bw2.write(curr.year);
-                        bw2.write(" ");
-                        bw2.write(curr.rent);
-                        bw2.write(" ");
-                        bw2.write(curr.days);
-                        bw2.write(" ");
-                        bw2.newLine();
-                        curr=curr.next;
-                    }
-                    bw2.close();
-                } else {
-                    System.out.println("No available cars to rent out for reservations");
-                }
-            }
-            else{
-                System.out.println("No reservations found");
-            }
-        }
-        catch (IOException e){
-            e.printStackTrace();
-        }
-    }
-    public static void InsertInBST(String line){
-        String[] AllWithHeadings = line.split(" ");
-        String[] MakeWithHeading = AllWithHeadings[0].split(":");
-        String[] ModelWithHeading = AllWithHeadings[1].split(":");
-        String[] YearWithHeading = AllWithHeadings[2].split(":");
-        String[] RentWithHeading = AllWithHeadings[3].split(":");
-        String make = MakeWithHeading[1];
-        String model = ModelWithHeading[1];
-        String year = YearWithHeading[1];
-        String rentString = RentWithHeading[1];
-        int rent=Integer.parseInt(rentString);
-        RentBST node=new RentBST(make,model,year,rent);
-        if(root==null){
-            root=node;
-        }
-        else{
-            RentBST curr=root;
-            RentBST prev=null;
-            while(curr!=null){
-                if(node.rent>=curr.rent){
-                    prev=curr;
-                    curr=curr.right;
-                }
-                else {
-                    prev=curr;
-                    curr=curr.left;
-                }
-            }
-            if(node.rent>=prev.rent){
-                prev.right=node;
-            }
-            else{
-                prev.left=node;
-            }
-        }
-    }
-    public static void RentToBST(){
-        try {
-            File f = new File(available);
-            if (f.exists()) {
-
-                BufferedReader br = new BufferedReader(new FileReader(f));
-                String line;
-                while ((line = br.readLine()) != null) {
-                    InsertInBST(line);
-                }
-            }
-        }
-        catch (IOException e){
-            e.printStackTrace();
-        }
-    }
-    public static RentBST InsertionInBST(RentBST node,RentBST root){
-        if(root==null){
-            return node;
-        }
-        else if (node.rent >= root.rent) {
-            root.right=InsertionInBST(node,root.right);
-        }
-        else{
-            root.left=InsertionInBST(node,root.left);
-        }
-        return root;
-    }
-    public static RentBST deletionInBST(RentBST node,RentBST root){
-        if(root==null){
-            return null;
-        }
-        if(node.rent>root.rent){
-            root.right=deletionInBST(node,root.right);
-        }
-        else if(node.rent<root.rent){
-            root.left=deletionInBST(node,root.left);
-        }
-        else {
-            if(root.left==null&&root.right==null){
-                return null;
-            }
-            else if(root.left!=null&&root.right!=null){
-                RentBST succParent=root;
-                RentBST succ=root.right;
-                while (succ.left != null) {
-                    succParent = succ;
-                    succ = succ.left;
-                }
-                if (succParent != root) {
-                    succParent.left = succ.right;
-                }
-                else {
-                    succParent.right = succ.right;
-                }
-                root.model=succ.model;
-                root.year=succ.year;
-                root.make=succ.make;
-                root.rent = succ.rent;
-            }
-            else{
-                if (root.left == null) {
-                    RentBST temp = root.right;
-                    return temp;
-                }
-                else{
-                    RentBST temp = root.left;
-                    return temp;
-                }
-            }
-        }
-        return root;
-    }
-    static void preOrder(RentBST node) {
-        if (node != null) {
-            System.out.print(node.rent + " ");
-            preOrder(node.left);
-            preOrder(node.right);
-        }
-    }
-    static int flags=0;
-    public static void RentSearch(int rent,RentBST root){
-        if(root==null){
-            return;
-        }
-        if(rent>root.rent){
-            RentSearch(rent,root.right);
-        }
-        else if(rent<root.rent){
-            RentSearch(rent,root.left);
-        }
-        else{
-            flags=1;
-            System.out.println(root.make+" "+root.model+" "+root.year+" "+root.rent);
-            RentSearch(rent,root.right);
         }
     }
 

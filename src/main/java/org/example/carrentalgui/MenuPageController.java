@@ -1,5 +1,6 @@
 package org.example.carrentalgui;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -20,7 +21,7 @@ public class MenuPageController {
     private Button UserPanelButton;
 
     @FXML
-    void handleAdminPanel(MouseEvent event) throws IOException {
+    void handleAdminPanel(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminLogin.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
@@ -32,7 +33,7 @@ public class MenuPageController {
     }
 
     @FXML
-    void handleUserPanel(MouseEvent event) throws IOException {
+    void handleUserPanel(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("UserMenu.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();

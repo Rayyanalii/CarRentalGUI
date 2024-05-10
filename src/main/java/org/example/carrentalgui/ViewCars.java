@@ -166,7 +166,7 @@ public class ViewCars {
         Stage stage = new Stage();
         stage.setScene(new Scene(root,720,480));
         stage.setResizable(false);
-        stage.setTitle("Menu Page");
+        stage.setTitle("Admin Panel");
         stage.show();
         ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
     }
