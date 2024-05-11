@@ -72,7 +72,7 @@ public class ViewCars {
                 }
                 String lowerCaseFilter = newValue.toLowerCase();
                 for (String cellData : data) {
-                    if (cellData.toLowerCase().contains(lowerCaseFilter)) {
+                    if (cellData.toLowerCase().startsWith(lowerCaseFilter)) {
                         return true;
                     }
                 }
