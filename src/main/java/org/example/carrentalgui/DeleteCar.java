@@ -1,3 +1,4 @@
+
 package org.example.carrentalgui;
 
 import javafx.beans.property.SimpleStringProperty;
@@ -126,7 +127,7 @@ public class DeleteCar {
     }
 
     private void loadDataFromFile() {
-        String filePath = "C:\\Users\\Dell\\Desktop\\AvailCars.txt";
+        String filePath = "C:\\Users\\rayya\\Desktop\\AvailCars.txt";
         String line;
 
         try {
@@ -159,11 +160,7 @@ public class DeleteCar {
 
     @FXML
     void handleDeletebutton(ActionEvent event) throws IOException {
-<<<<<<< HEAD
-        File file = new File(Code.available);
-=======
         File file=new File(Code.available);
->>>>>>> 5b1365879319d7b843475914008adc334a9742d8
         Code.DeleteCar(rowData,file);
         Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
         alert.setContentText("Car has been deleted successfully!");
