@@ -1,56 +1,31 @@
 package org.example.carrentalgui;
 
 import java.io.*;
-import java.util.*;
-
-import static java.lang.System.exit;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Code {
-    static class QueueList{
-        String username;
-        String make;
-        String model;
-        String year;
-        String rent;
-        QueueList next;
-        String days;
-        public QueueList(String make, String model, String year,String username,String rent,String days) {
-            this.username=username;
-            this.make = make;
-            this.model = model;
-            this.year = year;
-            this.rent=rent;
-            this.days=days;
-        }
-    }
-    static class RentBST{
-        String make;
-        String model;
-        String year;
-        int rent;
-        RentBST left;
-        RentBST right;
-        public RentBST(String make, String model, String year,int rent) {
-            this.make = make;
-            this.model = model;
-            this.year = year;
-            this.rent=rent;
-        }
-    }
-    static RentBST root;
-    static QueueList Enqueue,Dequeue;
-    static class LockedOutException extends Exception{
-        public LockedOutException(String error){
+    static class LockedOutException extends Exception {
+        public LockedOutException(String error) {
             super(error);
         }
     }
+<<<<<<< HEAD
     public static String available="C:\\Users\\Dell\\Desktop\\AvailCars.txt";
     public static String users="C:\\Users\\Dell\\Desktop\\Users.txt";
     public static String temp="C:\\Users\\Dell\\Desktop\\temp.txt";
     public static String reservations="C:\\Users\\Dell\\Desktop\\Reservations.txt";
+=======
+
+    public static String available = "C:\\Users\\rayya\\Desktop\\AvailCars.txt";
+    public static String users = "C:\\Users\\rayya\\Desktop\\Users.txt";
+    public static String temp = "C:\\Users\\rayya\\Desktop\\temp.txt";
+    public static String reservations = "C:\\Users\\rayya\\Desktop\\Reservations.txt";
+>>>>>>> 5b1365879319d7b843475914008adc334a9742d8
     static Scanner scanner = new Scanner(System.in);
-    static int LocketOutCount=0;
-    public static int Menu(){
+    static int LocketOutCount = 0;
+
+    public static int Menu() {
         System.out.println("-------------------------------------------------------------------------");
         System.out.println("Welcome To Car Rental System\n");
         System.out.println("Press (1) for User Panel");
@@ -59,16 +34,8 @@ public class Code {
         System.out.println("Choose what to do:");
         return scanner.nextInt();
     }
-    public static int UserPanel(){
-        System.out.println("-------------------------------------------------------------------------");
-        System.out.println("Press (1) to Login");
-        System.out.println("Press (2) to Register");
-        System.out.println("Press (3) to Go back!\n");
-        System.out.println("Choose what to do:");
-        return scanner.nextInt();
-    }
-    public static String UserLogin(String name,String pass) throws LockedOutException{
-        int flag=0;
+    public static String UserLogin(String name, String pass) {
+        int flag = 0;
         try {
             File f = new File(users);
             if (!f.exists()) {
@@ -92,7 +59,7 @@ public class Code {
                         }
                         if (flag == 0) {
                             LocketOutCount++;
-                            if(LocketOutCount==3){
+                            if (LocketOutCount == 3) {
                                 return "Locked";
                             }
                             return "Invalid";
@@ -100,13 +67,13 @@ public class Code {
                     }
                 }
             }
-        }
-        catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return "Login";
     }
-    public static String UserRegistration(String name,String pass1,String pass2){
+
+    public static String UserRegistration(String name, String pass1, String pass2) {
         int numCount = 0;
         int specialCount = 0;
         String buffer;
@@ -169,10 +136,12 @@ public class Code {
         }
         return "done";
     }
-    public static void RentACar(String[] data,String name,String input){
+
+    public static void RentACar(String[] data, String name, String input) {
         int days = Integer.parseInt(input);
-        String buffer = "%s %s %s %s".formatted(data[0],data[1],data[2],data[3]);
+        String buffer = "%s %s %s %s".formatted(data[0], data[1], data[2], data[3]);
         String buffer2;
+<<<<<<< HEAD
         int rent= Integer.parseInt(data[3]);
                 int Total = rent*days;
                     try {
@@ -221,77 +190,125 @@ public class Code {
     public static void ReturnACar(String data[],String name){
         String filename="C:\\Users\\Dell\\Desktop\\%s RentedCars.txt".formatted(name);
         String buffer = "%s %s %s %s %s %s".formatted(data[0],data[1],data[2],data[3],data[4],data[5]);
+=======
+        int rent = Integer.parseInt(data[3]);
+        int Total = rent * days;
+        try {
+            String filename = "C:\\Users\\rayya\\Desktop\\%s RentedCars.txt".formatted(name);
+            File f1 = new File(temp);
+            File f2 = new File(available);
+            File f3 = new File(filename);
+            f1.createNewFile();
+            if (!f3.exists()) {
+                f3.createNewFile();
+            }
+            BufferedReader br1 = new BufferedReader(new FileReader(f2));
+            BufferedWriter bw = new BufferedWriter(new FileWriter(f1));
+            String line;
+            while ((line = br1.readLine()) != null) {
+                bw.write(line);
+                bw.newLine();
+            }
+            bw.close();
+            f2.delete();
+            f2.createNewFile();
+            BufferedReader br = new BufferedReader(new FileReader(f1));
+            BufferedWriter bw1 = new BufferedWriter(new FileWriter(f3, true));
+            bw = new BufferedWriter(new FileWriter(f2));
+            while ((buffer2 = br.readLine()) != null) {
+                if (buffer.equals(buffer2)) {
+                } else {
+                    bw.write(buffer2);
+                    bw.newLine();
+                }
+            }
+            bw1.write(buffer);
+            bw1.write(" ");
+            bw1.write(String.valueOf(days));
+            bw1.write(" ");
+            bw1.write(String.valueOf(Total));
+            bw1.newLine();
+            bw1.close();
+            br.close();
+            bw.close();
+            f1.delete();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void ReturnACar(String data[], String name) {
+        String filename = "C:\\Users\\rayya\\Desktop\\%s RentedCars.txt".formatted(name);
+        String buffer = "%s %s %s %s %s %s".formatted(data[0], data[1], data[2], data[3], data[4], data[5]);
+>>>>>>> 5b1365879319d7b843475914008adc334a9742d8
         String buffer2;
-                try {
-                    File f1 = new File(available);
-                    File f2 = new File(temp);
-                    File f3 = new File(filename);
-                    BufferedReader br = new BufferedReader(new FileReader(f3));
-                    BufferedWriter bufferedWriter=new BufferedWriter(new FileWriter(f2));
-                    String line;
-                    while((line=br.readLine())!=null){
-                        bufferedWriter.write(line);
-                        bufferedWriter.newLine();
-                    }
-                    bufferedWriter.close();
-                    BufferedWriter bw1 = new BufferedWriter( new FileWriter(f1, true));
-                    if (!f1.exists()) {
-                        f1.createNewFile();
-                    }
-                    br=new BufferedReader(new FileReader(f2));
-                    BufferedWriter bw2 = new BufferedWriter(new FileWriter(f3));
-                    while ((buffer2 = br.readLine()) != null) {
-                        if (buffer.equals(buffer2)) {
-                        } else {
-                            bw2.write(buffer2);
-                            bw2.newLine();
-                        }
-                    }
-                    String car="%s %s %s %s".formatted(data[0],data[1],data[2],data[3]);
-                    bw1.write(car);
-                    bw1.newLine();
-                    bw1.close();
-                    bw2.close();
-                    br.close();
-                    f2.delete();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                catch (NullPointerException e){
-                    e.getMessage();
-                }
-    }
-    public static boolean AdminLogin(String name, String pass){
-            String admin="admin",password="pass";
-            if(name.equals(admin) && pass.equals(password)){
-                return true;
+        try {
+            File f1 = new File(available);
+            File f2 = new File(temp);
+            File f3 = new File(filename);
+            BufferedReader br = new BufferedReader(new FileReader(f3));
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(f2));
+            String line;
+            while ((line = br.readLine()) != null) {
+                bufferedWriter.write(line);
+                bufferedWriter.newLine();
             }
-            else{
-                return false;
+            bufferedWriter.close();
+            BufferedWriter bw1 = new BufferedWriter(new FileWriter(f1, true));
+            if (!f1.exists()) {
+                f1.createNewFile();
             }
+            br = new BufferedReader(new FileReader(f2));
+            BufferedWriter bw2 = new BufferedWriter(new FileWriter(f3));
+            while ((buffer2 = br.readLine()) != null) {
+                if (buffer.equals(buffer2)) {
+                } else {
+                    bw2.write(buffer2);
+                    bw2.newLine();
+                }
+            }
+            String car = "%s %s %s %s".formatted(data[0], data[1], data[2], data[3]);
+            bw1.write(car);
+            bw1.newLine();
+            bw1.close();
+            bw2.close();
+            br.close();
+            f2.delete();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (NullPointerException e) {
+            e.getMessage();
+        }
     }
-    public static void AddCar(String make,String model,String year,String rent){
+
+    public static boolean AdminLogin(String name, String pass) {
+        String admin = "admin", password = "pass";
+        if (name.equals(admin) && pass.equals(password)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static void AddCar(String make, String model, String year, String rent) {
         String buffer;
-        try{
-            File f=new File(available);
-            if(!f.exists()){
+        try {
+            File f = new File(available);
+            if (!f.exists()) {
                 f.createNewFile();
             }
-            FileWriter fw=new FileWriter(f,true);
-            BufferedWriter bw=new BufferedWriter(fw);
-            buffer="%s %s %s %s".formatted(make,model,year,rent);
+            FileWriter fw = new FileWriter(f, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            buffer = "%s %s %s %s".formatted(make, model, year, rent);
             bw.write(buffer);
             bw.newLine();
             bw.close();
             fw.close();
-            int intRent=Integer.parseInt(rent);
-            RentBST node=new RentBST(make,model,year,intRent);
-            root=InsertionInBST(node,root);
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
+<<<<<<< HEAD
     public static void DeleteCar(String[] data, File file) throws ArrayIndexOutOfBoundsException{
         String buffer;
             try {
@@ -310,9 +327,30 @@ public class Code {
                 String[] split;
                 BufferedReader br = new BufferedReader(new FileReader(f2));
                 BufferedWriter bw = new BufferedWriter(new FileWriter(f1));
+=======
+
+    public static void DeleteCar(String[] data, File file) throws ArrayIndexOutOfBoundsException {
+        String buffer;
+        try {
+            File f2 = new File(temp);
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(f2));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                writer.write(line);
+                writer.newLine();
+            }
+            writer.close();
+            reader.close();
+            file.delete();
+            String[] split;
+            BufferedReader br = new BufferedReader(new FileReader(f2));
+            BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+            if (file.equals(new File(available))) {
+>>>>>>> 5b1365879319d7b843475914008adc334a9742d8
                 while ((buffer = br.readLine()) != null) {
                     split = buffer.split(" ");
-                    if (split[0].equalsIgnoreCase(data[0]) && split[1].equalsIgnoreCase(data[1]) && split[2].equalsIgnoreCase(data[2])&&split[3].equalsIgnoreCase(data[3])) {
+                    if (split[0].equalsIgnoreCase(data[0]) && split[1].equalsIgnoreCase(data[1]) && split[2].equalsIgnoreCase(data[2]) && split[3].equalsIgnoreCase(data[3])) {
                     } else {
                         bw.write(buffer);
                         bw.newLine();
@@ -321,13 +359,30 @@ public class Code {
                 bw.close();
                 br.close();
                 f2.delete();
-                int intRent=Integer.parseInt(data[3]);
-                RentBST node=new RentBST(data[0],data[1],data[2],intRent);
-                root=deletionInBST(node,root);
-            }catch (IOException e) {
-                e.printStackTrace();
+            } else if (file.equals(new File(reservations))) {
+                while ((buffer = br.readLine()) != null) {
+                    split = buffer.split(" ");
+                    if (split[0].equalsIgnoreCase(data[0]) && split[1].equalsIgnoreCase(data[1]) && split[2].equalsIgnoreCase(data[2]) && split[3].equalsIgnoreCase(data[3]) && split[4].equalsIgnoreCase(data[4])) {
+                    } else {
+                        bw.write(buffer);
+                        bw.newLine();
+                    }
+                }
+                bw.close();
+                br.close();
+                f2.delete();
+                File file1 = new File(available);
+                BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file1, true));
+                buffer = "%s %s %s %s".formatted(data[1], data[2], data[3], data[4]);
+                bufferedWriter.write(buffer);
+                bufferedWriter.newLine();
+                bufferedWriter.close();
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+<<<<<<< HEAD
     public static void DisplayCars(){
         ArrayList<String> usernames=new ArrayList<>();
         try {
@@ -378,161 +433,90 @@ public class Code {
                         }
                     }
                 }
+=======
+>>>>>>> 5b1365879319d7b843475914008adc334a9742d8
 
-            }
-        }
-        catch (IOException e){
-            e.printStackTrace();
-        }
-    }
-    public static void DisplayUsers(){
-        String buffer;
-        try {
-            File f = new File(users);
-            if (!f.exists()) {
-                System.out.println("No registered users exist!");
-            } else {
-                BufferedReader br = new BufferedReader(new FileReader(f));
-                if((buffer=br.readLine())==null){
-                    System.out.println("No registered users exist!");
-                }
-                else{
-                    System.out.println("-------------------------------------------------------------------------");
-                    System.out.println("Registered users:\n");
-                    System.out.println(buffer);
-                    while((buffer=br.readLine())!=null){
-                        System.out.println(buffer);
-                    }
-                }
-                br.close();
-            }
-        }
-        catch (IOException e){
-            e.printStackTrace();
-        }
-    }
-    public static void LinearSearch() {
-        try {
-            System.out.println("-------------------------------------------------------------------------");
-            int flag=0;
-            File f = new File(available);
-            if (!f.exists()) {
-                System.out.println("No cars available at the moment!");
-            } else {
-                System.out.println("Enter complete name of the car you want to search in format (Make Model): ");
-                String car = scanner.nextLine();
-                String[] carnames = car.split(" ");
-                if (carnames.length != 2) {
-                    System.out.println("Invalid name! Try Again! ");
-                    LinearSearch();
-                }
-                else {
-                    System.out.println("-------------------------------------------------------------------------");
-                    System.out.println("Cars found:");
-                    BufferedReader br=new BufferedReader(new FileReader(f));
-                    String line;
-                    while((line=br.readLine())!=null){
-                        String[] splitWithHeadings =line.split(" ");
-                        String[] makeWithHeading=splitWithHeadings[0].split(":");
-                        String make=makeWithHeading[1];
-                        String[] modelWithHeading=splitWithHeadings[1].split(":");
-                        String model=modelWithHeading[1];
-                        if(make.equalsIgnoreCase(carnames[0])&&model.equalsIgnoreCase(carnames[1])){
-                            flag=1;
-                            System.out.println(line);
-                        }
-                    }
-                    if(flag==0){
-                        System.out.println("None found!");
-                    }
-                }
-            }
-        }
-        catch (IOException e){
-            e.printStackTrace();
-        }
-    }
-    public static void NameSortAscending(File file){
+    public static void NameSortAscending(File file) {
         try {
             if (!file.exists()) {
             } else {
                 BufferedReader br = new BufferedReader(new FileReader(file));
                 String line;
-                ArrayList<String> unsorted=new ArrayList<>();
-                while((line=br.readLine())!=null){
-                    if(unsorted.isEmpty()){
+                ArrayList<String> unsorted = new ArrayList<>();
+                while ((line = br.readLine()) != null) {
+                    if (unsorted.isEmpty()) {
                         unsorted.add(line);
                         continue;
                     }
                     unsorted.add(line);
-                    for (int i = unsorted.size()-1; i > 0 && unsorted.get(i).compareToIgnoreCase(unsorted.get(i-1))<0 ; i--) {
-                        String temp=unsorted.get(i);
-                        unsorted.set(i,unsorted.get(i-1));
-                        unsorted.set(i-1,temp);
+                    for (int i = unsorted.size() - 1; i > 0 && unsorted.get(i).compareToIgnoreCase(unsorted.get(i - 1)) < 0; i--) {
+                        String temp = unsorted.get(i);
+                        unsorted.set(i, unsorted.get(i - 1));
+                        unsorted.set(i - 1, temp);
                     }
                 }
                 br.close();
                 file.delete();
-                if(!file.exists()){
+                if (!file.exists()) {
                     file.createNewFile();
                 }
-                BufferedWriter bw=new BufferedWriter(new FileWriter(file));
+                BufferedWriter bw = new BufferedWriter(new FileWriter(file));
                 for (int i = 0; i < unsorted.size(); i++) {
                     bw.write(unsorted.get(i));
                     bw.newLine();
                 }
                 bw.close();
             }
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    public static void NameSortDescending(File file){
+
+    public static void NameSortDescending(File file) {
         try {
             if (!file.exists()) {
             } else {
                 BufferedReader br = new BufferedReader(new FileReader(file));
                 String line;
-                ArrayList<String> unsorted=new ArrayList<>();
-                while((line=br.readLine())!=null){
-                    if(unsorted.isEmpty()){
+                ArrayList<String> unsorted = new ArrayList<>();
+                while ((line = br.readLine()) != null) {
+                    if (unsorted.isEmpty()) {
                         unsorted.add(line);
                         continue;
                     }
                     unsorted.add(line);
-                    for (int i = unsorted.size()-1; i > 0 && unsorted.get(i).compareToIgnoreCase(unsorted.get(i-1))>0 ; i--) {
-                        String temp=unsorted.get(i);
-                        unsorted.set(i,unsorted.get(i-1));
-                        unsorted.set(i-1,temp);
+                    for (int i = unsorted.size() - 1; i > 0 && unsorted.get(i).compareToIgnoreCase(unsorted.get(i - 1)) > 0; i--) {
+                        String temp = unsorted.get(i);
+                        unsorted.set(i, unsorted.get(i - 1));
+                        unsorted.set(i - 1, temp);
                     }
                 }
                 br.close();
                 file.delete();
-                if(!file.exists()){
+                if (!file.exists()) {
                     file.createNewFile();
                 }
-                BufferedWriter bw=new BufferedWriter(new FileWriter(file));
+                BufferedWriter bw = new BufferedWriter(new FileWriter(file));
                 for (int i = 0; i < unsorted.size(); i++) {
                     bw.write(unsorted.get(i));
                     bw.newLine();
                 }
                 bw.close();
             }
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    public static void RentSortAscending(File file){
+
+    public static void RentSortAscending(File file) {
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
             String line;
             ArrayList<String> unsorted = new ArrayList<>();
-            ArrayList<Integer> rent=new ArrayList<>();
+            ArrayList<Integer> rent = new ArrayList<>();
             while ((line = br.readLine()) != null) {
-                String[] splitwithHeadings=line.split(" ");
-                int rentperday=Integer.parseInt(splitwithHeadings[3]);
+                String[] splitwithHeadings = line.split(" ");
+                int rentperday = Integer.parseInt(splitwithHeadings[3]);
                 if (unsorted.isEmpty()) {
                     unsorted.add(line);
                     rent.add(rentperday);
@@ -540,142 +524,109 @@ public class Code {
                 }
                 unsorted.add(line);
                 rent.add(rentperday);
-                for (int i = rent.size()-1; i > 0 && rent.get(i)<rent.get(i-1) ; i--) {
-                    String temp=unsorted.get(i);
-                    unsorted.set(i,unsorted.get(i-1));
-                    unsorted.set(i-1,temp);
-                    int temprent=rent.get(i);
-                    rent.set(i,rent.get(i-1));
-                    rent.set(i-1,temprent);
-                }
-            }
-            br.close();
-            file.delete();;
-            if(!file.exists()){
-                file.createNewFile();
-            }
-            BufferedWriter bw=new BufferedWriter(new FileWriter(file));
-            for (int i = 0; i < unsorted.size(); i++) {
-                bw.write(unsorted.get(i));
-                bw.newLine();
-            }
-            bw.close();
-        }
-        catch (IOException e){
-            e.printStackTrace();
-        }
-    }
-    public static void RentSortDescending(File file){
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(file));
-            String line;
-            ArrayList<String> unsorted = new ArrayList<>();
-            ArrayList<Integer> rent=new ArrayList<>();
-            while ((line = br.readLine()) != null) {
-                String[] splitwithHeadings=line.split(" ");
-                int rentperday=Integer.parseInt(splitwithHeadings[3]);
-                if (unsorted.isEmpty()) {
-                    unsorted.add(line);
-                    rent.add(rentperday);
-                    continue;
-                }
-                unsorted.add(line);
-                rent.add(rentperday);
-                for (int i = rent.size()-1; i > 0 && rent.get(i)>rent.get(i-1) ; i--) {
-                    String temp=unsorted.get(i);
-                    unsorted.set(i,unsorted.get(i-1));
-                    unsorted.set(i-1,temp);
-                    int temprent=rent.get(i);
-                    rent.set(i,rent.get(i-1));
-                    rent.set(i-1,temprent);
+                for (int i = rent.size() - 1; i > 0 && rent.get(i) < rent.get(i - 1); i--) {
+                    String temp = unsorted.get(i);
+                    unsorted.set(i, unsorted.get(i - 1));
+                    unsorted.set(i - 1, temp);
+                    int temprent = rent.get(i);
+                    rent.set(i, rent.get(i - 1));
+                    rent.set(i - 1, temprent);
                 }
             }
             br.close();
             file.delete();
-            if(!file.exists()){
+            ;
+            if (!file.exists()) {
                 file.createNewFile();
             }
-            BufferedWriter bw=new BufferedWriter(new FileWriter(file));
+            BufferedWriter bw = new BufferedWriter(new FileWriter(file));
             for (int i = 0; i < unsorted.size(); i++) {
                 bw.write(unsorted.get(i));
                 bw.newLine();
             }
             bw.close();
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    public static void InsertInList(String line){
-        String[] Splitted=line.split(" ");
-        String username=Splitted[0];
-        String make=Splitted[1];
-        String model=Splitted[2];
-        String year=Splitted[3];
-        String rent=Splitted[4];
-        String days=Splitted[5];
-        QueueList node=new QueueList(make,model,year,username,rent,days);
-        if(Enqueue==null){
-            Enqueue=node;
-            Dequeue=node;
-        }
-        else{
-            Dequeue.next=node;
-            Dequeue=node;
-        }
-    }
-    public static void ReservationToList(){
-        try{
-            File f=new File(reservations);
-            if(f.exists()){
-                BufferedReader br=new BufferedReader(new FileReader(f));
-                String line;
-                while((line=br.readLine())!=null){
-                    InsertInList(line);
+
+    public static void RentSortDescending(File file) {
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String line;
+            ArrayList<String> unsorted = new ArrayList<>();
+            ArrayList<Integer> rent = new ArrayList<>();
+            while ((line = br.readLine()) != null) {
+                String[] splitwithHeadings = line.split(" ");
+                int rentperday = Integer.parseInt(splitwithHeadings[3]);
+                if (unsorted.isEmpty()) {
+                    unsorted.add(line);
+                    rent.add(rentperday);
+                    continue;
+                }
+                unsorted.add(line);
+                rent.add(rentperday);
+                for (int i = rent.size() - 1; i > 0 && rent.get(i) > rent.get(i - 1); i--) {
+                    String temp = unsorted.get(i);
+                    unsorted.set(i, unsorted.get(i - 1));
+                    unsorted.set(i - 1, temp);
+                    int temprent = rent.get(i);
+                    rent.set(i, rent.get(i - 1));
+                    rent.set(i - 1, temprent);
                 }
             }
-        }
-        catch (IOException e){
+            br.close();
+            file.delete();
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+            for (int i = 0; i < unsorted.size(); i++) {
+                bw.write(unsorted.get(i));
+                bw.newLine();
+            }
+            bw.close();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    public static void BookingReservation(String[] data,String name,String days){
-        int intdays=Integer.parseInt(days);
-        int intrent= Integer.parseInt(data[3]);
-        int total=intdays*intrent;
-        String stringtotal= String.valueOf(total);
-        try{
-            File avail=new File(available);
-            File tem=new File(temp);
-            File f=new File(reservations);
-            if(!f.exists()){
+
+    public static void BookingReservation(String[] data, String name, String days) {
+        int intdays = Integer.parseInt(days);
+        int intrent = Integer.parseInt(data[3]);
+        int total = intdays * intrent;
+        String stringtotal = String.valueOf(total);
+        try {
+            File avail = new File(available);
+            File tem = new File(temp);
+            File f = new File(reservations);
+            if (!f.exists()) {
                 f.createNewFile();
             }
             String b;
-            String car="%s %s %s %s".formatted(data[0],data[1],data[2],data[3]);
-            BufferedReader availreader=new BufferedReader(new FileReader(avail));
-            BufferedWriter tempwriter=new BufferedWriter(new FileWriter(tem));
-            while((b=availreader.readLine())!=null){
-                if(b.equalsIgnoreCase(car)){
-                }
-                else {
+            String car = "%s %s %s %s".formatted(data[0], data[1], data[2], data[3]);
+            BufferedReader availreader = new BufferedReader(new FileReader(avail));
+            BufferedWriter tempwriter = new BufferedWriter(new FileWriter(tem));
+            while ((b = availreader.readLine()) != null) {
+                if (b.equalsIgnoreCase(car)) {
+                } else {
                     tempwriter.write(b);
                     tempwriter.newLine();
                 }
             }
             availreader.close();
             tempwriter.close();
-            BufferedWriter availwriter=new BufferedWriter(new FileWriter(avail));
-            BufferedReader tempreader=new BufferedReader(new FileReader(tem));
-            while((b=tempreader.readLine())!=null){
-                    availwriter.write(b);
-                    availwriter.newLine();
+            BufferedWriter availwriter = new BufferedWriter(new FileWriter(avail));
+            BufferedReader tempreader = new BufferedReader(new FileReader(tem));
+            while ((b = tempreader.readLine()) != null) {
+                availwriter.write(b);
+                availwriter.newLine();
             }
             tempreader.close();
             availwriter.close();
             tem.delete();
-            BufferedWriter bw=new BufferedWriter(new FileWriter(f,true));
-            String buffer="%s %s %s %s %s %s %s".formatted(name,data[0],data[1],data[2],data[3],days,stringtotal);
+            BufferedWriter bw = new BufferedWriter(new FileWriter(f, true));
+            String buffer = "%s %s %s %s %s %s %s".formatted(name, data[0], data[1], data[2], data[3], days, stringtotal);
             bw.write(buffer);
             bw.newLine();
             bw.close();
@@ -683,6 +634,7 @@ public class Code {
             throw new RuntimeException(e);
         }
     }
+<<<<<<< HEAD
     public static void PrintReservations(){
         System.out.println("-------------------------------------------------------------------------");
         System.out.println("Reservations: ");
@@ -1191,3 +1143,6 @@ public class Code {
 //    }
 }
 
+=======
+}
+>>>>>>> 5b1365879319d7b843475914008adc334a9742d8

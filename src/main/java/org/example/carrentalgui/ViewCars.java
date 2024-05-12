@@ -72,7 +72,7 @@ public class ViewCars {
                 }
                 String lowerCaseFilter = newValue.toLowerCase();
                 for (String cellData : data) {
-                    if (cellData.toLowerCase().contains(lowerCaseFilter)) {
+                    if (cellData.toLowerCase().startsWith(lowerCaseFilter)) {
                         return true;
                     }
                 }
@@ -166,7 +166,7 @@ public class ViewCars {
         Stage stage = new Stage();
         stage.setScene(new Scene(root,720,480));
         stage.setResizable(false);
-        stage.setTitle("Menu Page");
+        stage.setTitle("Admin Panel");
         stage.show();
         ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
     }

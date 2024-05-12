@@ -45,7 +45,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="MakeField" layoutX="287.0" layoutY="213.0" onAction="#handleMakeField" onKeyReleased="#handleMakeRelease" prefHeight="25.0" prefWidth="223.0" />
+      <TextField fx:id="MakeField" layoutX="287.0" layoutY="213.0" onAction="#handleMakeField" onKeyReleased="#handleMakeRelease" onMousePressed="#handleMakePressed" prefHeight="25.0" prefWidth="223.0" />
       <Label layoutX="310.0" layoutY="164.0" text="Enter Car Details">
          <font>
             <Font name="System Bold" size="20.0" />
@@ -61,9 +61,9 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="ModelField" layoutX="288.0" layoutY="255.0" onAction="#handleModelField" onKeyReleased="#handleModelRelease" prefHeight="25.0" prefWidth="223.0" />
-      <TextField fx:id="YearField" layoutX="288.0" layoutY="298.0" onAction="#handleYearField" onKeyReleased="#handleYearRelease" prefHeight="25.0" prefWidth="223.0" />
-      <TextField fx:id="RentField" layoutX="288.0" layoutY="339.0" onAction="#handleRentField" onKeyReleased="#handleRentRelease" prefHeight="25.0" prefWidth="223.0" />
+      <TextField fx:id="ModelField" layoutX="288.0" layoutY="255.0" onAction="#handleModelField" onKeyReleased="#handleModelRelease" onMousePressed="#handleModelPressed" prefHeight="25.0" prefWidth="223.0" />
+      <TextField fx:id="YearField" layoutX="288.0" layoutY="298.0" onAction="#handleYearField" onKeyReleased="#handleYearRelease" onMousePressed="#handleYearPressed" prefHeight="25.0" prefWidth="223.0" />
+      <TextField fx:id="RentField" layoutX="288.0" layoutY="339.0" onAction="#handleRentField" onKeyReleased="#handleRentRelease" onMousePressed="#handleRentPressed" prefHeight="25.0" prefWidth="223.0" />
       <Button fx:id="AddCarButton" layoutX="325.0" layoutY="394.0" mnemonicParsing="false" onAction="#handleAddButton" prefHeight="30.0" prefWidth="148.0" text="Add Car" />
       <Button fx:id="GoBackButton" layoutX="54.0" layoutY="55.0" mnemonicParsing="false" onAction="#handleBackButton" text="Go Back" />
       <Label fx:id="makeText" layoutX="515.0" layoutY="216.0" text="Space is not allowed">

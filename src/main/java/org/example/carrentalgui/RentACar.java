@@ -7,6 +7,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -88,7 +89,7 @@ public class RentACar {
                 }
                 String lowerCaseFilter = newValue.toLowerCase();
                 for (String cellData : data) {
-                    if (cellData.toLowerCase().contains(lowerCaseFilter)) {
+                    if (cellData.toLowerCase().startsWith(lowerCaseFilter)) {
                         return true;
                     }
                 }
@@ -158,7 +159,7 @@ public class RentACar {
         stage.setResizable(false);
         stage.setTitle("Menu Page");
         stage.show();
-        ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+        ((Stage)(((Node)event.getSource()).getScene().getWindow())).close();
     }
 
     @FXML
@@ -190,10 +191,8 @@ public class RentACar {
                     a.setContentText("Car has been rented successfully!");
                     a.showAndWait();
                     Code.RentACar(rowData, username, input);
-                    // Continue your code here with the input
                 }
                 } else {
-                // Handle cancel or do nothing
             }
         });
         Stage stage = (Stage) RentCar.getScene().getWindow();

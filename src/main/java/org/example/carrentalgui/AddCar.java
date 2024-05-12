@@ -3,13 +3,16 @@ package org.example.carrentalgui;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
@@ -21,6 +24,15 @@ public class AddCar {
         rentText.setVisible(false);
         yearText.setVisible(false);
         modelText.setVisible(false);
+        RentField.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode()==KeyCode.TAB) {
+                rentText.setVisible(false);
+                RentField.getParent().getChildrenUnmodifiable().stream()
+                        .filter(node -> node.isFocusTraversable() && node != RentField)
+                        .findFirst()
+                        .ifPresent(node -> node.requestFocus());
+            }
+        });
     }
 
     @FXML
@@ -110,7 +122,7 @@ public class AddCar {
         stage.setResizable(false);
         stage.setTitle("Admin Panel");
         stage.show();
-        ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+        ((Stage)(((Node)event.getSource()).getScene().getWindow())).close();
     }
     @FXML
     void handleYearRelease(KeyEvent event) {
@@ -221,6 +233,22 @@ public class AddCar {
     @FXML
     void handleYearField(ActionEvent event) throws IOException {
         handleAddButton(event);
+    }
+    @FXML
+    void handleMakePressed(MouseEvent event) {
+        handleMakeRelease(null);
+    }
+    @FXML
+    void handleModelPressed(MouseEvent event) {
+        handleModelRelease(null);
+    }
+    @FXML
+    void handleYearPressed(MouseEvent event) {
+        handleYearRelease(null);
+    }
+    @FXML
+    void handleRentPressed(MouseEvent event) {
+        handleRentRelease(null);
     }
 
 }

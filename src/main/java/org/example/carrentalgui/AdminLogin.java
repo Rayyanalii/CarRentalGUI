@@ -37,7 +37,7 @@ public class AdminLogin {
         stage.setResizable(false);
         stage.setTitle("Main Menu");
         stage.show();
-        ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+        ((Stage)(((Node)event.getSource()).getScene().getWindow())).close();
     }
 
     @FXML

@@ -84,7 +84,7 @@ public class DeleteCar {
                 }
                 String lowerCaseFilter = newValue.toLowerCase();
                 for (String cellData : data) {
-                    if (cellData.toLowerCase().contains(lowerCaseFilter)) {
+                    if (cellData.toLowerCase().startsWith(lowerCaseFilter)) {
                         return true;
                     }
                 }
@@ -159,7 +159,11 @@ public class DeleteCar {
 
     @FXML
     void handleDeletebutton(ActionEvent event) throws IOException {
+<<<<<<< HEAD
         File file = new File(Code.available);
+=======
+        File file=new File(Code.available);
+>>>>>>> 5b1365879319d7b843475914008adc334a9742d8
         Code.DeleteCar(rowData,file);
         Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
         alert.setContentText("Car has been deleted successfully!");
