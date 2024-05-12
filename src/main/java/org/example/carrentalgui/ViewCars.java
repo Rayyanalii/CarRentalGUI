@@ -114,7 +114,7 @@ public class ViewCars {
     }
 
     private void loadDataFromFile() throws IOException {
-        String filePath = "C:\\Users\\rayya\\Desktop\\AvailCars.txt";
+        String filePath = "C:\\Users\\Dell\\Desktop\\AvailCars.txt";
         String line;
         try {
             File f = new File(filePath);
@@ -143,7 +143,7 @@ public class ViewCars {
             }
             br1.close();
             for (String username : usernames) {
-                String filename = "C:\\Users\\rayya\\Desktop\\%s RentedCars.txt".formatted(username);
+                String filename = "C:\\Users\\Dell\\Desktop\\%s RentedCars.txt".formatted(username);
                 File f2 = new File(filename);
                 if (!f2.exists()) {
                     continue;
