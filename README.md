@@ -44,22 +44,54 @@ Java (OOP, Exception Handling, File I/O)
 Pure Java File Handling (TXT files)
 
 ## Screenshots
-### Login Screen
+### Main Panel
 
-### Login
-### User Dashboard
+![Main Panel](./screenshots/mainpanel.png)
 
-### Car Listing
+### Admin Login
 
-### Make Reservation
+![Admin Login](./screenshots/admin_login.png)
 
 ### Admin Dashboard
 
+![Admin Dashboard](./screenshots/admin_panel.png)
+
 ### Manage Cars
+
+![Add Car](./screenshots/admin_addcar.png)
+![Remove Car](./screenshots/admin_removecar.png)
 
 ### Manage Users
 
+![Manage Users](./screenshots/admin_viewusers.png)
+
 ### View Reservations
+
+![View Reservations](./screenshots/admin_reservations.png)
+
+### User Register
+
+![User Register](./screenshots/user_register.png)
+
+### User Login
+
+![User Login](./screenshots/user_login.png)
+
+### User Dashboard
+
+![User Dashboard](./screenshots/user_paneln.png)
+
+### Rent Car
+
+![Rent Car](./screenshots/user_rentcar.png)
+
+### Return Car
+
+![Return Car](./screenshots/user_returncar.png)
+
+### Make Reservation
+
+![Make Reservation](./screenshots/user_reserve.png)
 
 ## Use Case
 
