@@ -79,7 +79,7 @@ Pure Java File Handling (TXT files)
 
 ### User Dashboard
 
-![User Dashboard](./screenshots/user_paneln.png)
+![User Dashboard](./screenshots/user_panel.png)
 
 ### Rent Car
 
@@ -91,7 +91,7 @@ Pure Java File Handling (TXT files)
 
 ### Make Reservation
 
-![Make Reservation](./screenshots/user_reserve.png)
+![Make Reservation](./screenshots/user_reservecar.png)
 
 ## Use Case
 
