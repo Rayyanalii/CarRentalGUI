@@ -59,7 +59,7 @@ Pure Java File Handling (TXT files)
 ### Manage Cars
 
 ![Add Car](./screenshots/admin_addcar.png)
-![Remove Car](./screenshots/admin_removecar.png)
+![Remove Car](./screenshots/admin_deletecar.png)
 
 ### Manage Users
 
